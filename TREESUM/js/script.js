@@ -14,6 +14,7 @@ function treeSum(arr) {
 
 	for (let n = 0; n < arr.length; n++) {
 
+		// * лучший вариант кода
 		if (typeof (arr[n]) == 'number') {
 			sum = sum + arr[n];
 		} else {
