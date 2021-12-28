@@ -13,7 +13,7 @@ let age_5 = age + 5;
 
 let gender = (isWoman == true) ? 'женский' : 'мужской';
 
-let senior = (age > 65) ? 'да' : 'нет';
+let senior = seniorCheck();
 
 alert(
 	`ваше ФИО: ${fam} ${name} ${patr}\nваш возраст в годах: ${age}\nваш возраст в днях: ${age_days}\nчерез 5 лет вам будет: ${age_5}\nваш пол: ${gender}\nвы на пенсии: ${senior}`
@@ -42,6 +42,20 @@ function getAge(question) {
 		getAnswer = parseInt(prompt(question));
 		answer = getAnswer;
 	} while (isNaN(answer) || answer <= 0 || answer > 100);
+
+	return answer;
+}
+
+function seniorCheck() {
+	let answer = null;
+
+	if (isWoman == true && age > 60) {
+		answer = 'да'
+	} else if (isWoman == false && age > 65) {
+		answer = 'да'
+	} else {
+		answer = 'нет'
+	};
 
 	return answer;
 }
