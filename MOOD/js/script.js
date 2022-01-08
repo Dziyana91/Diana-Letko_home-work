@@ -5,15 +5,16 @@ function randomDiap(n, m) {
 }
 
 function mood(colorsCount) {
-	var colors = ['', 'красный', 'оранжевый', 'жёлтый', 'зелёный', 'голубой', 'синий', 'фиолетовый'];
-
-	var used = {};											// ключ хэша - цвет, который уже встречался
 
 	console.log('цветов: ' + colorsCount);
 
 	colorsList(colorsCount);
 
 	function colorsList(colorsCount) {
+
+		var colors = ['', 'красный', 'оранжевый', 'жёлтый', 'зелёный', 'голубой', 'синий', 'фиолетовый'];
+
+		var used = {};											// ключ хэша - цвет, который уже встречался
 
 		for (var i = 1; i <= colorsCount; i++) {
 			var n = randomDiap(1, 7);
