@@ -9,21 +9,18 @@ function mood(colorsCount) {
 
 	var used = {};											// ключ хэша - цвет, который уже встречался
 
-	moodHeader(colorsCount);
-	moodColors(colorsCount);
+	console.log('цветов: ' + colorsCount);
 
-	function moodHeader(colorsCount) {
-		console.log('цветов: ' + colorsCount);
-	}
+	colorsList(colorsCount);
 
-	function moodColors(colorsCount) {
+	function colorsList(colorsCount) {
 
 		for (var i = 1; i <= colorsCount; i++) {
 			var n = randomDiap(1, 7);
 			var colorName = colors[n];
 
 			if (colorName in used) {
-				moodColors(1);								// чтобы количество выводимых цветов не уменьшалось при повторении, вызываем функцию 1 дополнительный раз для каждого повторения
+				colorsList(1);								// чтобы количество выводимых цветов не уменьшалось при повторении, вызываем функцию 1 дополнительный раз для каждого повторения
 				continue;									// далее переходим к следующей итерации цикла
 			} else {
 				used[colorName] = true;					// запоминаем впервые встретившийся цвет
@@ -34,4 +31,4 @@ function mood(colorsCount) {
 	}
 }
 
-mood(3);
+mood(5);
