@@ -15,7 +15,7 @@ function mood(colorsCount) {
 	function colorsList(colorsCount) {
 
 		var colors = ['', 'красный', 'оранжевый', 'жёлтый', 'зелёный', 'голубой', 'синий', 'фиолетовый'];
-		var used = {};										// ключ хэша - цвет, который уже встречался
+		var used = {};														// ключ хэша - цвет, который уже встречался
 
 
 		while (Object.keys(used).length < colorsCount) {		// проверка количества цветов в хэше
@@ -25,7 +25,7 @@ function mood(colorsCount) {
 			if (colorName in used) {
 				continue;
 			}
-			used[colorName] = true;						// запоминаем впервые встретившийся цвет
+			used[colorName] = true;										// запоминаем впервые встретившийся цвет
 			console.log(colorName);
 		}
 
