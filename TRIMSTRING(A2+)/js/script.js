@@ -14,7 +14,6 @@ function stringTrim(s) {
 		} else if (sTrimmed[sTrimmed.length - 1] === ' ') {
 			sTrimmed = sTrimmed.slice(0, sTrimmed.length - 1);
 		} else {
-			sTrimmed = sTrimmed;
 			break;
 		}
 
