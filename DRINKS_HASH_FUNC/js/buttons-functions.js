@@ -41,10 +41,10 @@ function info() {
 	let drinkInfo = drinkStorage.getValue(drinkName);
 	let notification = null;
 
-	if (drinkName in drinkStorage) {
-		notification = `напиток <span>${drinkName}</span><br>алкогольный: <span>${drinkInfo['алкогольный']}</span><br>состав: <span>${drinkInfo['состав']}</span>`;
-	} else {
+	if (drinkInfo == undefined) {
 		notification = `напиток <span>${drinkName}</span> отсутствует в хранилище`
+	} else {
+		notification = `напиток <span>${drinkName}</span><br>алкогольный: <span>${drinkInfo['алкогольный']}</span><br>состав: <span>${drinkInfo['состав']}</span>`;
 	}
 
 	infoDisplay(notification);
