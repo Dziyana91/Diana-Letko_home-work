@@ -25,8 +25,8 @@ function add() {
 
 	let drinkIngredients = getInfo('введите ингредиенты напитка');
 
-	drinkInfo['алкогольный'] = drinkAlco;
-	drinkInfo['состав'] = drinkIngredients;
+	drinkInfo.alco = drinkAlco;
+	drinkInfo.recipe = drinkIngredients;
 
 	drinkStorage.addVallue(drinkName, drinkInfo);
 
@@ -44,7 +44,7 @@ function info() {
 	if (drinkInfo == undefined) {
 		notification = `напиток <span>${drinkName}</span> отсутствует в хранилище`
 	} else {
-		notification = `напиток <span>${drinkName}</span><br>алкогольный: <span>${drinkInfo['алкогольный']}</span><br>состав: <span>${drinkInfo['состав']}</span>`;
+		notification = `напиток <span>${drinkName}</span><br>алкогольный: <span>${drinkInfo.alco}</span><br>состав: <span>${drinkInfo.recipe}</span>`;
 	}
 
 	infoDisplay(notification);
