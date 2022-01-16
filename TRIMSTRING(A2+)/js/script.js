@@ -5,18 +5,22 @@ alert('*' + stringTrim(prompt('введите текст')) + '*');
 
 function stringTrim(s) {
 
-	let sTrimmed = s;
+	let sLength = s.length;
 
-	while (true) {
+	let lastCharNo = sLength - 1;			// индекс последнего символа строки
 
-		if (sTrimmed[0] === ' ') {
-			sTrimmed = sTrimmed.slice(1);
-		} else if (sTrimmed[sTrimmed.length - 1] === ' ') {
-			sTrimmed = sTrimmed.slice(0, sTrimmed.length - 1);
-		} else {
-			break;
-		}
+	let spaceCountStart = 0;				// подсчет пробелов с начала
+	let spaceCountEnd = 0;					// подсчет пробелов с конца
 
+	for (let i = 0; s[i] === ' '; i++) {
+		spaceCountStart++;
 	}
+
+	for (let i = 0; s[lastCharNo - i] === ' '; i++) {
+		spaceCountEnd++;
+	}
+
+	let sTrimmed = s.slice(spaceCountStart, sLength - spaceCountEnd);	// если в конце нет пробелов, то обрезается до +1 несуществующего символа в конце и последний символ не удаляется
+
 	return sTrimmed;
 }
