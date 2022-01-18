@@ -1,46 +1,51 @@
 "use strict";
 
-vowelsCount(prompt('введите фразу для подсчета в ней гласных букв'));
+let phrase = prompt('введите фразу для подсчета в ней гласных букв').toLowerCase();
+let phraseArray = phrase.split('');
 
-function vowelsCount(phrase) {
-	const VOWELS_LIBRARY = {
-		'у': 'у',
-		'е': 'е',
-		'ы': 'ы',
-		'а': 'а',
-		'о': 'о',
-		'э': 'э',
-		'я': 'я',
-		'и': 'и',
-		'ю': 'ю',
-		'ё': 'ё',
-	};
+const LETTERS_LIBRARY = {
+	'у': 'у',
+	'е': 'е',
+	'ы': 'ы',
+	'а': 'а',
+	'о': 'о',
+	'э': 'э',
+	'я': 'я',
+	'и': 'и',
+	'ю': 'ю',
+	'ё': 'ё',
+};
 
-	let phraseLowerCase = phrase.toLowerCase();
-	let phraseArray = phraseLowerCase.split('');
+console.log(vowelsCountFE(phraseArray) + ' - с использованием метода массива forEach');
+console.log(vowelsCountF(phraseArray) + ' - с использованием метода массива filter');
+console.log(vowelsCountR(phraseArray) + ' - с использованием метода массива reduce');
 
-	let count1 = 0;
+function vowelsCountFE(phrase) {
+	let count = 0;
 	function countingForEach(value, i, array) {
-		if (value in VOWELS_LIBRARY) {
-			count1++;
+		if (value in LETTERS_LIBRARY) {
+			count++;
 		}
 	}
-	phraseArray.forEach(countingForEach)
-	console.log(count1 + ' - с использованием метода массива forEach');
+	phrase.forEach(countingForEach)
+	return count;
+}
 
+function vowelsCountF(phrase) {
 	function countingFilter(value, i, array) {
-		return (value in VOWELS_LIBRARY);
+		return (value in LETTERS_LIBRARY);
 	}
-	let vowelsArray = phraseArray.filter(countingFilter);
-	let count2 = vowelsArray.length;
-	console.log(count2 + ' - с использованием метода массива filter');
+	let vowelsArray = phrase.filter(countingFilter);
+	return vowelsArray.length;
+}
 
+function vowelsCountR(phrase) {
 	function countingReduce(r, value, i, array) {
-		if (value in VOWELS_LIBRARY) {
+		if (value in LETTERS_LIBRARY) {
 			r++;
 		}
 		return r;
 	};
-	let count3 = phraseArray.reduce(countingReduce, 0);
-	console.log(count3 + ' - с использованием метода массива reduce');
+	let count = phrase.reduce(countingReduce, 0);
+	return count;
 }
