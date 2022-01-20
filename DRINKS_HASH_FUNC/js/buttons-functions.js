@@ -30,6 +30,10 @@ function add() {
 
 	drinkStorage.addVallue(drinkName, drinkInfo);
 
+	// * лучший вариант - не нужно отдельно создавать пустой хэш drinkInfo
+	// drinkStorage.addVallue(drinkName,
+	// 	{ also: drinkAlco, recipe: drinkIngredients });
+
 	let notification = `напиток <span>${drinkName}</span> добавлен в хранилище`;
 	infoDisplay(notification);
 

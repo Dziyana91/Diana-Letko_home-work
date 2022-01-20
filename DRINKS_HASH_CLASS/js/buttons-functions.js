@@ -18,17 +18,14 @@ function infoDisplay(text) {
 
 function add() {
 	let drinkName = getInfo('введите название напитка');
-	let drinkInfo = {};
 
 	let isAlco = confirm('если напиток алкогольный, нажмите ОК\nесли безалкогольный - Cancel');
-	let drinkAlco = (isAlco) ? 'да' : 'нет';
+	let alco = (isAlco) ? 'да' : 'нет';
 
-	let drinkIngredients = getInfo('введите ингредиенты напитка');
+	let recipe = getInfo('введите ингредиенты напитка');
 
-	drinkInfo.alco = drinkAlco;
-	drinkInfo.recipe = drinkIngredients;
-
-	drinkStorage.addVallue(drinkName, drinkInfo);
+	drinkStorage.addVallue(drinkName,
+		{ alco, recipe });
 
 	let notification = `напиток <span>${drinkName}</span> добавлен в хранилище`;
 	infoDisplay(notification);
