@@ -1,6 +1,8 @@
 "use strict";
 
-alert(isPalindrome(prompt('введите текст')));
+if (isPalindrome(prompt('введите текст'))) {
+	alert("это палиндром");
+} else { alert("это не палиндром") };
 
 
 function isPalindrome(phrase) {
@@ -25,13 +27,20 @@ function isPalindrome(phrase) {
 
 	let phraseLC = phrase.trim().toLowerCase();
 	let phraseOptimized = deleteIgnorable(phraseLC);
-	let phraseReverse = reversing(phraseOptimized);
 
-	if (phraseOptimized === phraseReverse) {
-		return "это палиндром";
-	} else {
-		return "это не палиндром";
+	let answer = true;
+
+	for (let i = 0; i < phraseOptimized.length; i++) {
+
+		let startIndex = 0;
+		let lastIndex = phraseOptimized.length - 1;
+
+		if (phraseOptimized[startIndex + i] !== phraseOptimized[lastIndex - i]) {
+			answer = false;
+			break;
+		}
 	}
+	return answer;
 
 	function deleteIgnorable(s) {
 		let str = s;
@@ -48,16 +57,5 @@ function isPalindrome(phrase) {
 		console.log(str);
 
 		return str;
-	}
-
-	function reversing(s) {
-		let sReversed = '';
-
-		for (let i = s.length - 1; i >= 0; i--) {
-			sReversed += s[i];
-		}
-		console.log(sReversed);
-
-		return sReversed;
 	}
 }
