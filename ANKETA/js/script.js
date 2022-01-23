@@ -41,7 +41,7 @@ function getFIO(question) {
 // * лучший вариант кода
 // function getFIO(question, question2) {
 // 	var answer = prompt(question);
-// 		while (!answer) {						// answer приводится к boolean, null и пустая строка => false, а логич отрицание превращает его в true - пока true, цикл повторяется
+// 		while (!answer) {										// answer приводится к boolean, null и пустая строка => false, а логич отрицание превращает его в true - пока true, цикл повторяется
 // 			answer = prompt(question2);
 // 		}				
 // 	return answer;

@@ -9,7 +9,7 @@ let array = [5, 7,
 console.log(treeSum(array));
 
 function treeSum(arr) {
-	let sum = null;
+	let sum = 0;
 
 	for (let n = 0; n < arr.length; n++) {
 
