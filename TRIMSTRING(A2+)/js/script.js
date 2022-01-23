@@ -2,7 +2,6 @@
 
 alert('*' + stringTrim(prompt('введите текст')) + '*');
 
-
 function stringTrim(s) {
 
 	let sLength = s.length;
