@@ -8,7 +8,6 @@ let array = [5, 7,
 
 console.log(treeSum(array));
 
-
 function treeSum(arr) {
 	let sum = null;
 
