@@ -29,8 +29,9 @@ function isPalindrome(phrase) {
 	let phraseOptimized = deleteIgnorable(phraseLC);
 
 	let answer = true;
+	// let count = 0;
 
-	for (let i = 0; i < phraseOptimized.length; i++) {
+	for (let i = 0; i < Math.floor(phraseOptimized.length / 2); i++) {
 
 		let startIndex = 0;
 		let lastIndex = phraseOptimized.length - 1;
@@ -39,7 +40,9 @@ function isPalindrome(phrase) {
 			answer = false;
 			break;
 		}
+		// count++
 	}
+	// console.log(count);
 	return answer;
 
 	function deleteIgnorable(s) {
