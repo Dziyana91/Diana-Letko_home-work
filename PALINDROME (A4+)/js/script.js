@@ -4,6 +4,7 @@ if (isPalindrome(prompt('введите текст'))) {
 	alert("это палиндром");
 } else { alert("это не палиндром") };
 
+
 function isPalindrome(phrase) {
 
 	const SYMBOLS_TO_IGNORE = {
