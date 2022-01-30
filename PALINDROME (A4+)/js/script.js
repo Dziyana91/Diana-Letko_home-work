@@ -7,6 +7,43 @@ if (isPalindrome(prompt('введите текст'))) {
 
 function isPalindrome(phrase) {
 
+	let cleanStr = clearString(phrase);
+	console.log('cleanStr: ' + cleanStr);
+
+	let count = 0;
+
+	let startIndex = 0;
+	let lastIndex = cleanStr.length - 1;
+
+	let answer = null;
+
+	palindromeTest(cleanStr);
+
+	function palindromeTest(str) {
+		count++
+
+		if (str[startIndex] !== str[lastIndex]) {
+			console.log('answer: false');
+			answer = false;
+			return;
+		} else if (lastIndex - startIndex == 2 || lastIndex - startIndex == 1) {		//проверяем дошли ли до середины
+			console.log('we are in the middle');
+			answer = true;
+			return;
+		} else {
+			startIndex++;
+			lastIndex--;
+			// console.log(`start index - ${startIndex} last index - ${lastIndex}`);
+			palindromeTest(cleanStr);
+		}
+	}
+
+	console.log(`function run ${count} times`);
+	return answer;
+}
+
+function clearString(str) {
+
 	const SYMBOLS_TO_IGNORE = {
 		'ь': true,
 		'ъ': true,
@@ -25,40 +62,16 @@ function isPalindrome(phrase) {
 		' ': true
 	};
 
-	let phraseLC = phrase.trim().toLowerCase();
-	let phraseOptimized = deleteIgnorable(phraseLC);
+	let cleanStr = str.trim().toLowerCase();
 
-	let answer = true;
-	// let count = 0;
+	for (let i = 0; i < str.length; i++) {
+		let character = str[i];
 
-	for (let i = 0; i < Math.floor(phraseOptimized.length / 2); i++) {
-
-		let startIndex = 0;
-		let lastIndex = phraseOptimized.length - 1;
-
-		if (phraseOptimized[startIndex + i] !== phraseOptimized[lastIndex - i]) {
-			answer = false;
-			break;
+		if (character === 'ё') {
+			cleanStr = cleanStr.replace(character, 'е');
+		} else if (character in SYMBOLS_TO_IGNORE) {
+			cleanStr = cleanStr.replace(character, '');
 		}
-		// count++
 	}
-	// console.log(count);
-	return answer;
-
-	function deleteIgnorable(s) {
-		let str = s;
-
-		for (let i = 0; i < s.length; i++) {
-			let character = s[i];
-
-			if (character === 'ё') {
-				str = str.replace(character, 'е');
-			} else if (character in SYMBOLS_TO_IGNORE) {
-				str = str.replace(character, '');
-			}
-		}
-		console.log(str);
-
-		return str;
-	}
+	return cleanStr;
 }
