@@ -33,6 +33,7 @@ class Test3 {
 	}
 }
 
+
 var abc = new Test3;
 
 var cba = abc.getTest('diana');
