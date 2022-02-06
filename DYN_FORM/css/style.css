@@ -44,7 +44,7 @@
 	border-radius: 5px;
 }
 
-.form-container form {
+.form-container form .form-wrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;

@@ -32,6 +32,11 @@ var formDef2 =
 function addForm(formContent, formField) {
 
 	let frm = document.forms[formField];
+
+	//* лучше бы создать DIV, в него подсоединить строки, а потом прикрепить один элемент к форме
+	let container = document.createElement('div');
+	container.className = 'form-wrapper';
+
 	let formRow = null;
 
 	let lbl = null;
@@ -55,6 +60,8 @@ function addForm(formContent, formField) {
 			lbl.textContent = item.label;
 			formRow.appendChild(lbl);
 		};
+
+		//* вариант сл switch лучше
 
 		if (itemKind === 'combo') {
 
@@ -133,6 +140,7 @@ function addForm(formContent, formField) {
 			};
 		};
 		formRow.appendChild(inpt);
-		frm.appendChild(formRow);
+		container.append(formRow);
 	};
+	frm.appendChild(container);
 }
