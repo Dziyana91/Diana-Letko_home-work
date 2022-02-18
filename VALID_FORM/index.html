@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>VALID_FORM</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+
+	<div class="wrapper">
+		<div id="header">Для внесения вашего сайта в каталог, заполните форму:</div>
+
+		<div class="form-container">
+			<form name="INFO" action="https://fe.it-academy.by/TestForm.php" method="get" novalidate>
+				<div class="form-wrapper">
+					<div class="form-row">
+						<label for="dev" class="labels">Разработчики:</label>
+						<input type="text" class="longline" name="developers" id="dev">
+					</div>
+					<div class="form-row">
+						<label for="sitename" class="labels">Название сайта:</label>
+						<input type="text" class="longline" name="sitename" id="sitename">
+					</div>
+					<div class="form-row">
+						<label for="siteurl" class="labels">URL сайта:</label>
+						<input type="url" class="longline" name="siteurl" id="siteurl">
+					</div>
+					<div class="form-row">
+						<label for="startdate" class="labels">Дата запуска сайта:</label>
+						<input type="date" class="tinyline" name="startdate" id="startdate">
+					</div>
+					<div class="form-row">
+						<label for="visitors" class="labels">Посетителей в сутки:</label>
+						<input type="number" min="0" step="1" class="tinyline" name="visitors" id="visitors">
+					</div>
+					<div class="form-row">
+						<label for="email" class="labels">E-mail для связи:</label>
+						<input type="email" class="shortline" name="email" id="email">
+					</div>
+					<div class="form-row">
+						<label for="division" class="labels">Рубрика каталога:</label>
+						<select class="shortline" name="division" id="division">
+							<option value="1" selected>бытовая техника</option>
+							<option value="2">здоровье</option>
+							<option value="3">домашний уют</option>
+						</select>
+					</div>
+					<div class="form-row" id="paymentScroll">
+						<div class="labels">Размещение:</div>
+						<div id="payment">
+							<label class="radio-label">
+								<input type="radio" value="1" name="payment">
+								<span>бесплатное</span>
+							</label>
+							<label class="radio-label">
+								<input type="radio" value="2" name="payment">
+								<span>платное</span>
+							</label>
+							<label class="radio-label">
+								<input type="radio" value="3" name="payment">
+								<span>VIP</span>
+							</label>
+						</div>
+					</div>
+					<div class="form-row">
+						<label for="votes" class="labels">Разрешить отзывы:</label>
+						<input type="checkbox" name="votes" id="votes">
+					</div>
+					<div class="form-row">
+						<label for="description" class="labels">Описание сайта:</label>
+						<textarea class="memo" name="description" id="description"></textarea>
+					</div>
+					<div class="form-row">
+						<input type="submit" value="Опубликовать">
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+	<!-- после библиотечных файлов -->
+	<script src="js/script.js"></script>
+</body>
+
+</html>

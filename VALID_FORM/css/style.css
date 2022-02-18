@@ -1,0 +1,114 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	padding: 10px;
+	width: 100vw;
+	font-family: sans-serif;
+}
+
+#header {
+	padding: 2px 0 10px 2px;
+}
+
+.form-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 50%;
+}
+
+.form-container input[type="submit"] {
+	font-size: 18px;
+	min-height: 3em;
+	border: none;
+	background-color: lightgrey;
+}
+
+.form-container input[type="submit"] {
+	min-height: 2em;
+	padding: 5px;
+}
+
+.form-container input[type="submit"]:hover {
+	background: linear-gradient(90deg, rgb(197, 131, 217), rgb(82, 125, 182));
+	box-shadow: 0 0 5px black;
+}
+
+.form-container input[type="submit"]:active {
+	box-shadow: 0 0 3px white inset;
+	border-radius: 5px;
+}
+
+.form-container form .form-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+input,
+select,
+textarea {
+	font-size: 15px;
+	padding: 2px;
+}
+
+.form-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	min-height: 1.5em;
+	position: relative;
+}
+
+.form-row .labels {
+	min-width: 160px;
+	padding: 2px;
+}
+
+.form-row .longline {
+	flex-basis: calc(100% - 160px);
+	flex-grow: 1;
+}
+
+.form-row .tinyline {
+	flex-basis: calc((100% - 160px) / 4);
+	min-width: 170px;
+}
+
+.form-row .shortline {
+	flex-basis: calc((100% - 160px) / 2);
+	min-width: 170px;
+}
+
+.form-row .radio-label {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	gap: 5px;
+}
+
+#payment {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.form-row .memo {
+	flex-basis: 100%;
+	min-height: 5em;
+	resize: vertical;
+}
+
+.errorMessage {
+	position: absolute;
+	/* right: 0; */
+	bottom: 0.4em;
+	color: red;
+	font-size: 0.8em;
+	/* font-style: italic; */
+	font-weight: 600;
+}
