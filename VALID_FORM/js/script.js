@@ -61,7 +61,7 @@ function checkLength(EO) {
 	if (inputValue == '' || inputValue == null) {
 		messageText = 'поле не может быть пустым, введите данные';
 		addMessageField(self, messageText);
-	} else if (inputValueLength > 50) {
+	} else if (inputValueLength > 10) {										//* по условию должно быть 50
 		messageText = 'максимальное количество знаков - 50';
 		addMessageField(self, messageText);
 	} else {
@@ -183,7 +183,7 @@ function emailLength(EO) {
 	let inputValueLength = self.value.length;
 	let messageText = null;
 
-	if (inputValueLength > 30) {
+	if (inputValueLength > 10) {										//* по условию должно быть 30
 		messageText = 'максимальное количество знаков - 30';
 		addMessageField(self, messageText);
 	} else {
@@ -247,7 +247,7 @@ function memoLength(EO) {
 	if (inputValue == '' || inputValue == null) {
 		messageText = 'поле не может быть пустым, введите данные';
 		addMessageField(self, messageText);
-	} else if (inputValueLength > 250) {
+	} else if (inputValueLength > 10) {									//* по условию должно быть 250
 		messageText = 'максимальное количество знаков - 250';
 		addMessageField(self, messageText);
 	} else {
@@ -319,7 +319,7 @@ function validateInfoForm(EO) {
 			addMessageField(description, messageText);
 			description.focus();
 			EO.preventDefault();
-		} else if (descriptionLength > 250) {
+		} else if (descriptionLength > 10) {									//* по условию должно быть 250
 			EO.preventDefault();
 		}
 
@@ -353,7 +353,7 @@ function validateInfoForm(EO) {
 			EO.preventDefault();
 		} else if (atSymbolCount == 0 || atSymbolCount > 1) {
 			EO.preventDefault();
-		} else if (emailLength > 30) {
+		} else if (emailLength > 10) {								//* по условию должно быть 30
 			EO.preventDefault();
 		}
 
@@ -387,7 +387,7 @@ function validateInfoForm(EO) {
 			EO.preventDefault();
 		} else if (siteurlValueLength < 8) {
 			EO.preventDefault();
-		} else if (siteurlLength > 50) {
+		} else if (siteurlLength > 10) {					//* по условию должно быть 50
 			EO.preventDefault();
 		}
 
@@ -396,7 +396,7 @@ function validateInfoForm(EO) {
 			addMessageField(sitename, messageText);
 			sitename.focus();
 			EO.preventDefault();
-		} else if (sitenameLength > 50) {
+		} else if (sitenameLength > 10) {					//* по условию должно быть 50
 			EO.preventDefault();
 		}
 
@@ -405,7 +405,7 @@ function validateInfoForm(EO) {
 			addMessageField(developers, messageText);
 			developers.focus();
 			EO.preventDefault();
-		} else if (developersLength > 50) {
+		} else if (developersLength > 10) {						//* по условию должно быть 50
 			EO.preventDefault();
 		}
 	}
