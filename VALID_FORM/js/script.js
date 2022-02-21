@@ -4,18 +4,17 @@ let formTag = document.forms.INFO;
 formTag.addEventListener('submit', validateInfoForm, false);
 
 let developers = formTag.elements.developers;
-developers.addEventListener('blur', checkLength, false);
+developers.addEventListener('blur', textValidation, false);
 developers.addEventListener('keydown', checkLength, false);
 developers.addEventListener('keyup', checkLength, false);
 
 let sitename = formTag.elements.sitename;
-sitename.addEventListener('blur', checkLength, false);
+sitename.addEventListener('blur', textValidation, false);
 sitename.addEventListener('keydown', checkLength, false);
 sitename.addEventListener('keyup', checkLength, false);
 
 let siteurl = formTag.elements.siteurl;
 siteurl.addEventListener('blur', urlValidation, false);
-siteurl.addEventListener('blur', checkLength, false);
 siteurl.addEventListener('keydown', checkLength, false);
 siteurl.addEventListener('keyup', checkLength, false);
 
@@ -45,11 +44,27 @@ let votes = formTag.elements.votes;
 votes.addEventListener('change', votesValidation, false);
 
 let description = formTag.elements.description;
-description.addEventListener('blur', memoLength, false);
+description.addEventListener('blur', memoValidation, false);
 description.addEventListener('keydown', memoLength, false);
 description.addEventListener('keyup', memoLength, false);
 
 function checkLength(EO) {
+	EO = EO || window.event;
+	let self = this;
+
+	let inputValueLength = self.value.length;
+	console.log(inputValueLength);
+	let messageText = null;
+
+	if (inputValueLength > 10) {										//* по условию должно быть 50
+		messageText = 'максимальное количество знаков - 50';
+		addMessageField(self, messageText);
+	} else {
+		deleteMessageField(self);
+	}
+}
+
+function textValidation(EO) {
 	EO = EO || window.event;
 	let self = this;
 
@@ -61,7 +76,7 @@ function checkLength(EO) {
 	if (inputValue == '' || inputValue == null) {
 		messageText = 'поле не может быть пустым, введите данные';
 		addMessageField(self, messageText);
-	} else if (inputValueLength > 10) {										//* по условию должно быть 50
+	} else if (inputValueLength > 10) {									//* по условию должно быть 50
 		messageText = 'максимальное количество знаков - 50';
 		addMessageField(self, messageText);
 	} else {
@@ -78,11 +93,17 @@ function urlValidation(EO) {
 	let inputValueLength = inputValue.length;
 	let messageText = null;
 
-	if (inputValueStart !== 'http://') {
+	if (inputValue == '' || inputValue == null) {
+		messageText = 'поле не может быть пустым, введите данные';
+		addMessageField(self, messageText);
+	} else if (inputValueStart !== 'http://') {
 		messageText = 'введите URL, начинающийся с http://';
 		addMessageField(self, messageText);
 	} else if (inputValueLength < 8) {
 		messageText = 'введите действительный URL';
+		addMessageField(self, messageText);
+	} else if (inputValueLength > 10) {									//* по условию должно быть 50
+		messageText = 'максимальное количество знаков - 50';
 		addMessageField(self, messageText);
 	} else {
 		deleteMessageField(self);
@@ -211,7 +232,7 @@ function paymentValidation(EO) {
 	EO = EO || window.event;
 	let self = this;
 
-	let inputValue = EO.target.value;						// определяем value выбранного radio button
+	let inputValue = EO.target.value;								// определяем value выбранного radio button
 	console.log('payment type: ' + inputValue);
 	let messageText = null;
 
@@ -236,7 +257,7 @@ function votesValidation(EO) {
 	}
 }
 
-function memoLength(EO) {
+function memoValidation(EO) {
 	EO = EO || window.event;
 	let self = this;
 
@@ -247,7 +268,22 @@ function memoLength(EO) {
 	if (inputValue == '' || inputValue == null) {
 		messageText = 'поле не может быть пустым, введите данные';
 		addMessageField(self, messageText);
-	} else if (inputValueLength > 10) {									//* по условию должно быть 250
+	} else if (inputValueLength > 10) {								//* по условию должно быть 250
+		messageText = 'максимальное количество знаков - 250';
+		addMessageField(self, messageText);
+	} else {
+		deleteMessageField(self);
+	}
+}
+
+function memoLength(EO) {
+	EO = EO || window.event;
+	let self = this;
+
+	let inputValueLength = self.value.length;
+	let messageText = null;
+
+	if (inputValueLength > 10) {									//* по условию должно быть 250
 		messageText = 'максимальное количество знаков - 250';
 		addMessageField(self, messageText);
 	} else {
@@ -372,9 +408,9 @@ function validateInfoForm(EO) {
 			addMessageField(startdate, messageText);
 			startdate.focus();
 			EO.preventDefault();
-		} else if (inputValue > todayFormated) {
+		} else if (startdateValue > todayFormated) {
 			EO.preventDefault();
-		} else if (inputValue <= '2014-12-31') {
+		} else if (startdateValue <= '2014-12-31') {
 			EO.preventDefault();
 		}
 
