@@ -56,8 +56,8 @@ function checkLength(EO) {
 	console.log(inputValueLength);
 	let messageText = null;
 
-	if (inputValueLength > 10) {										//* по условию должно быть 50
-		messageText = 'максимальное количество знаков - 50';
+	if (inputValueLength > 30) {
+		messageText = 'максимальное количество знаков - 30';
 		addMessageField(self, messageText);
 	} else {
 		deleteMessageField(self);
@@ -76,8 +76,8 @@ function textValidation(EO) {
 	if (inputValue == '' || inputValue == null) {
 		messageText = 'поле не может быть пустым, введите данные';
 		addMessageField(self, messageText);
-	} else if (inputValueLength > 10) {									//* по условию должно быть 50
-		messageText = 'максимальное количество знаков - 50';
+	} else if (inputValueLength > 30) {
+		messageText = 'максимальное количество знаков - 30';
 		addMessageField(self, messageText);
 	} else {
 		deleteMessageField(self);
@@ -99,11 +99,11 @@ function urlValidation(EO) {
 	} else if (inputValueStart !== 'http://') {
 		messageText = 'введите URL, начинающийся с http://';
 		addMessageField(self, messageText);
-	} else if (inputValueLength < 8) {
-		messageText = 'введите действительный URL';
+	} else if (inputValueLength <= 14) {
+		messageText = 'URL не может быть короче 15 знаков';
 		addMessageField(self, messageText);
-	} else if (inputValueLength > 10) {									//* по условию должно быть 50
-		messageText = 'максимальное количество знаков - 50';
+	} else if (inputValueLength > 30) {
+		messageText = 'максимальное количество знаков - 30';
 		addMessageField(self, messageText);
 	} else {
 		deleteMessageField(self);
@@ -176,6 +176,7 @@ function emailValidation(EO) {
 
 	let inputValue = self.value.trim();
 	let atSymbolCount = 0;
+	let inputValueLength = self.value.length;
 
 	for (let i = 0; i < inputValue.length; i++) {
 		let char = inputValue[i];
@@ -192,6 +193,9 @@ function emailValidation(EO) {
 	} else if (atSymbolCount == 0 || atSymbolCount > 1) {
 		messageText = 'введите существующий e-mail, например example@gmail.com';
 		addMessageField(self, messageText);
+	} else if (inputValueLength > 20) {
+		messageText = 'максимальное количество знаков - 20';
+		addMessageField(self, messageText);
 	} else {
 		deleteMessageField(self);
 	}
@@ -204,8 +208,8 @@ function emailLength(EO) {
 	let inputValueLength = self.value.length;
 	let messageText = null;
 
-	if (inputValueLength > 10) {										//* по условию должно быть 30
-		messageText = 'максимальное количество знаков - 30';
+	if (inputValueLength > 20) {
+		messageText = 'максимальное количество знаков - 20';
 		addMessageField(self, messageText);
 	} else {
 		deleteMessageField(self);
@@ -268,8 +272,8 @@ function memoValidation(EO) {
 	if (inputValue == '' || inputValue == null) {
 		messageText = 'поле не может быть пустым, введите данные';
 		addMessageField(self, messageText);
-	} else if (inputValueLength > 10) {								//* по условию должно быть 250
-		messageText = 'максимальное количество знаков - 250';
+	} else if (inputValueLength > 50) {
+		messageText = 'максимальное количество знаков - 50';
 		addMessageField(self, messageText);
 	} else {
 		deleteMessageField(self);
@@ -283,8 +287,8 @@ function memoLength(EO) {
 	let inputValueLength = self.value.length;
 	let messageText = null;
 
-	if (inputValueLength > 10) {									//* по условию должно быть 250
-		messageText = 'максимальное количество знаков - 250';
+	if (inputValueLength > 50) {
+		messageText = 'максимальное количество знаков - 50';
 		addMessageField(self, messageText);
 	} else {
 		deleteMessageField(self);
@@ -355,7 +359,8 @@ function validateInfoForm(EO) {
 			addMessageField(description, messageText);
 			description.focus();
 			EO.preventDefault();
-		} else if (descriptionLength > 10) {									//* по условию должно быть 250
+		} else if (descriptionLength > 50) {
+			description.focus();
 			EO.preventDefault();
 		}
 
@@ -370,8 +375,11 @@ function validateInfoForm(EO) {
 			messageText = 'выберите вариант размещения';
 			addMessageField(payment, messageText);
 			paymentScroll.scrollIntoView();
+			paymentRadios[0].focus();
 			EO.preventDefault();
 		} else if (paymentValue == 1) {
+			paymentScroll.scrollIntoView();
+			paymentRadios[0].focus();
 			EO.preventDefault();
 		}
 
@@ -388,18 +396,20 @@ function validateInfoForm(EO) {
 			email.focus();
 			EO.preventDefault();
 		} else if (atSymbolCount == 0 || atSymbolCount > 1) {
+			email.focus();
 			EO.preventDefault();
-		} else if (emailLength > 10) {								//* по условию должно быть 30
+		} else if (emailLength > 20) {
+			email.focus();
 			EO.preventDefault();
 		}
 
 		if (visitorsValue == '' || visitorsValue == null) {
-			console.log('введите количество посетителей')
 			messageText = 'поле не может быть пустым, введите данные';
 			addMessageField(visitors, messageText);
 			visitors.focus();
 			EO.preventDefault();
 		} else if (visitorsValue.length > 1 && firstNum == 0) {
+			visitors.focus();
 			EO.preventDefault();
 		}
 
@@ -409,8 +419,10 @@ function validateInfoForm(EO) {
 			startdate.focus();
 			EO.preventDefault();
 		} else if (startdateValue > todayFormated) {
+			startdate.focus();
 			EO.preventDefault();
 		} else if (startdateValue <= '2014-12-31') {
+			startdate.focus();
 			EO.preventDefault();
 		}
 
@@ -420,10 +432,13 @@ function validateInfoForm(EO) {
 			siteurl.focus();
 			EO.preventDefault();
 		} else if (siteurlValueStart !== 'http://') {
+			siteurl.focus();
 			EO.preventDefault();
-		} else if (siteurlValueLength < 8) {
+		} else if (siteurlValueLength <= 14) {
+			siteurl.focus();
 			EO.preventDefault();
-		} else if (siteurlLength > 10) {					//* по условию должно быть 50
+		} else if (siteurlLength > 30) {
+			siteurl.focus();
 			EO.preventDefault();
 		}
 
@@ -432,7 +447,8 @@ function validateInfoForm(EO) {
 			addMessageField(sitename, messageText);
 			sitename.focus();
 			EO.preventDefault();
-		} else if (sitenameLength > 10) {					//* по условию должно быть 50
+		} else if (sitenameLength > 30) {
+			sitename.focus();
 			EO.preventDefault();
 		}
 
@@ -441,7 +457,8 @@ function validateInfoForm(EO) {
 			addMessageField(developers, messageText);
 			developers.focus();
 			EO.preventDefault();
-		} else if (developersLength > 10) {						//* по условию должно быть 50
+		} else if (developersLength > 30) {
+			developers.focus();
 			EO.preventDefault();
 		}
 	}
