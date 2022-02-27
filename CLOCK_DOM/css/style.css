@@ -1,0 +1,47 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	padding: 10px;
+	display: flex;
+	gap: 10px;
+	font-size: 15px;
+}
+
+.form-wrapper {
+	display: flex;
+	gap: 10px;
+}
+
+input {
+	font-size: 15px;
+	padding: 2px;
+}
+
+input[type="button"] {
+	border: none;
+	background-color: lightgrey;
+	min-height: 2em;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+input[type="button"]:hover {
+	background: linear-gradient(90deg, rgb(197, 131, 217), rgb(82, 125, 182));
+	box-shadow: 0 0 5px black;
+}
+
+input[type="button"]:active {
+	box-shadow: 0 0 3px white inset;
+}
+
+#error {
+	color: red;
+	font-weight: 600;
+	padding: 2px;
+	display: flex;
+	align-items: center;
+}

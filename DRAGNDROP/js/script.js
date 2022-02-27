@@ -59,6 +59,8 @@ function dragdrop(e) {
 		this.style.zIndex = index;
 		this.style.cursor = 'grabbing';
 		this.addEventListener('mousemove', dragImg, false);
+		this.addEventListener('mouseleave', dragImg, false);
+		this.addEventListener('mouseenter', dragImg, false);
 	}
 
 	function dropImg(eo) {
@@ -66,11 +68,14 @@ function dragdrop(e) {
 		eo.preventDefault();
 		this.style.cursor = 'grab';
 		this.removeEventListener('mousemove', dragImg, false);
+		this.removeEventListener('mouseleave', dragImg, false);
+		this.removeEventListener('mouseenter', dragImg, false);
 	}
 
 	function dragImg(eo) {
 		eo = eo || window.event;
 		eo.preventDefault();
+		this.style.cursor = 'grabbing';
 		this.style.left = (eo.pageX - shiftX) + 'px';
 		this.style.top = (eo.pageY - shiftY) + 'px';
 	}
