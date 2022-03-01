@@ -6,6 +6,9 @@ function dragdrop(e) {
 	e = e || window.event;
 
 	let images = document.getElementsByTagName('IMG');
+	let container = document.body;
+	container.addEventListener('mouseup', dropImg, false);
+	let imageSelected = null;
 
 	let positionX = 0;
 	let positionY = 0;
@@ -56,28 +59,25 @@ function dragdrop(e) {
 		shiftX = eo.pageX - positionX;
 		shiftY = eo.pageY - positionY;
 		index++;
-		this.style.zIndex = index;
-		this.style.cursor = 'grabbing';
-		this.addEventListener('mousemove', dragImg, false);
-		this.addEventListener('mouseleave', dragImg, false);
-		this.addEventListener('mouseenter', dragImg, false);
+		imageSelected = this;
+		imageSelected.style.zIndex = index;
+		imageSelected.style.cursor = 'grabbing';
+		container.addEventListener('mousemove', dragImg, false);
 	}
 
 	function dropImg(eo) {
 		eo = eo || window.event;
 		eo.preventDefault();
-		this.style.cursor = 'grab';
-		this.removeEventListener('mousemove', dragImg, false);
-		this.removeEventListener('mouseleave', dragImg, false);
-		this.removeEventListener('mouseenter', dragImg, false);
+		imageSelected.style.cursor = 'grab';
+		container.removeEventListener('mousemove', dragImg, false);
 	}
 
 	function dragImg(eo) {
 		eo = eo || window.event;
 		eo.preventDefault();
-		this.style.cursor = 'grabbing';
-		this.style.left = (eo.pageX - shiftX) + 'px';
-		this.style.top = (eo.pageY - shiftY) + 'px';
+		imageSelected.style.cursor = 'grabbing';
+		imageSelected.style.left = (eo.pageX - shiftX) + 'px';
+		imageSelected.style.top = (eo.pageY - shiftY) + 'px';
 	}
 
 }
