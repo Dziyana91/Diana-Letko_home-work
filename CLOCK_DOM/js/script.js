@@ -52,7 +52,7 @@ function drawClock(eo) {
 	let secondHandHeight = clockRadius * 0.9;
 	let secondHandWidth = minuteHandWidth / 3;
 	const offset = 10;																// процент сдвига стрелок вниз от длины стрелки, чтобы они пересекались у основания И transform origin Y
-	let minSecHandRotationAngle = 360 / maxHours / 5; 						// градус смещения минутной/секундной стрелки - 360гр разделено на количество часов и на 5 отделений до цифры
+	let minSecHandRotationAngle = 360 / maxHours / (60 / maxHours); 	// градус смещения минутной/секундной стрелки - 360гр разделено на количество часов и на количество отделений на циферблате
 
 	// рисуем циферблат
 	let clockFace = document.createElement('div');
@@ -70,7 +70,7 @@ function drawClock(eo) {
 	let marginTop = clockRadius / 2;
 	timeField.style.marginTop = marginTop + 'px';
 	timeField.style.color = 'rgb(255, 255, 255)';
-	timeField.style.fontSize = numberCircleDiameter / 2 + 'px';
+	timeField.style.fontSize = clockRadius / 6 + 'px';
 	timeField.style.fontStyle = 'italic';
 	timeField.style.zIndex = 1;
 
@@ -158,58 +158,32 @@ function drawClock(eo) {
 	let currentMinuteAngle = 0;
 	let currentHourAngle = 0;
 
+	let currentDate = null;
+	let currentSecond = 0;
+	let currentMinute = 0;
+	let currentHour = 0;
 	let currentTime = null;
-	let currentDate = new Date();
-	let currentHour = currentDate.getHours();
-	let currentMinute = currentDate.getMinutes();
-	let currentSecond = currentDate.getSeconds();
 
-	startTimePosition();
-	let updateTimeField = setInterval(timeFieldUpdate, 1000);
-	let startClock = setInterval(clockHandRotate, 1000);
+	startClock();
+	let start = setInterval(startClock, 1000);
 
-	function startTimePosition() {
-		currentTime = `${currentHour > 9 ? currentHour : '0' + currentHour}:${currentMinute > 9 ? currentMinute : '0' + currentMinute}:${currentSecond > 9 ? currentSecond : '0' + currentSecond}`;
-		timeField.innerHTML = currentTime;
-		console.log(currentTime);
+	function startClock() {
 
-		currentHourAngle = currentHour * hourHandRotationAngle;
-		hourHand.style.transform = `rotate(${currentHourAngle}deg)`;
-		currentMinuteAngle = currentMinute * minSecHandRotationAngle;
-		minuteHand.style.transform = `rotate(${currentMinuteAngle}deg)`;
+		currentDate = new Date();
+		currentSecond = currentDate.getSeconds();
+		currentMinute = currentDate.getMinutes();
+		currentHour = currentDate.getHours();
+
 		currentSecondAngle = currentSecond * minSecHandRotationAngle;
 		secondHand.style.transform = `rotate(${currentSecondAngle}deg)`;
-	}
-
-	function clockHandRotate() {
-		currentSecondAngle += minSecHandRotationAngle;
-		if (currentSecondAngle == 360) {									// когда секундная стрелка проходит круг, обнуляем угол поворота секундной стрелки и увеличиваем угол поворота минутной стрелки
-			currentSecondAngle = 0;
-			currentMinuteAngle += minSecHandRotationAngle;
-			if (currentMinuteAngle == 360) {
-				currentMinuteAngle = 0;
-				currentHourAngle += hourHandRotationAngle;
-				if (currentHourAngle == 360) { currentHourAngle = 0; }
-				hourHand.style.transform = `rotate(${currentHourAngle}deg)`;
-			}
-			minuteHand.style.transform = `rotate(${currentMinuteAngle}deg)`;
+		currentMinuteAngle = currentMinute * minSecHandRotationAngle;
+		minuteHand.style.transform = `rotate(${currentMinuteAngle}deg)`;
+		currentHourAngle = currentHour * hourHandRotationAngle;
+		if (currentMinute >= 30) {
+			currentHourAngle += hourHandRotationAngle / 2;
 		}
-		secondHand.style.transform = `rotate(${currentSecondAngle}deg)`;
-	}
+		hourHand.style.transform = `rotate(${currentHourAngle}deg)`;
 
-	function timeFieldUpdate() {
-		currentSecond++;
-		if (currentSecond == 60) {
-			currentSecond = 0;
-			currentMinute++;
-			if (currentMinute == 60) {
-				currentMinute = 0;
-				currentHour++;
-				if (currentHour == 24) {
-					currentHour = 0;
-				}
-			}
-		}
 		currentTime = `${currentHour > 9 ? currentHour : '0' + currentHour}:${currentMinute > 9 ? currentMinute : '0' + currentMinute}:${currentSecond > 9 ? currentSecond : '0' + currentSecond}`;
 		timeField.innerHTML = currentTime;
 		console.log(currentTime);
