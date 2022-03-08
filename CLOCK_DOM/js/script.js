@@ -159,13 +159,13 @@ function drawClock(eo) {
 	let currentHourAngle = 0;
 
 	let currentDate = null;
+	let mSeccond = 0;
 	let currentSecond = 0;
 	let currentMinute = 0;
 	let currentHour = 0;
 	let currentTime = null;
 
 	startClock();
-	let start = setInterval(startClock, 1000);
 
 	function startClock() {
 
@@ -173,20 +173,20 @@ function drawClock(eo) {
 		currentSecond = currentDate.getSeconds();
 		currentMinute = currentDate.getMinutes();
 		currentHour = currentDate.getHours();
+		mSeccond = currentDate.getMilliseconds();
 
 		currentSecondAngle = currentSecond * minSecHandRotationAngle;
 		secondHand.style.transform = `rotate(${currentSecondAngle}deg)`;
 		currentMinuteAngle = currentMinute * minSecHandRotationAngle;
 		minuteHand.style.transform = `rotate(${currentMinuteAngle}deg)`;
-		currentHourAngle = currentHour * hourHandRotationAngle;
-		if (currentMinute >= 30) {
-			currentHourAngle += hourHandRotationAngle / 2;
-		}
+		currentHourAngle = currentHour * hourHandRotationAngle + 360 / maxHours * currentMinute / 60;
 		hourHand.style.transform = `rotate(${currentHourAngle}deg)`;
 
 		currentTime = `${currentHour > 9 ? currentHour : '0' + currentHour}:${currentMinute > 9 ? currentMinute : '0' + currentMinute}:${currentSecond > 9 ? currentSecond : '0' + currentSecond}`;
 		timeField.innerHTML = currentTime;
 		console.log(currentTime);
+
+		setTimeout(startClock, 1020 - mSeccond);
 	}
 }
 
