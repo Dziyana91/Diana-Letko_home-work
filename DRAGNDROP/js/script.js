@@ -79,5 +79,4 @@ function dragdrop(e) {
 		imageSelected.style.left = (eo.pageX - shiftX) + 'px';
 		imageSelected.style.top = (eo.pageY - shiftY) + 'px';
 	}
-
 }
