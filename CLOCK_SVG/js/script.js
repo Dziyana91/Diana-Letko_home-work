@@ -3,7 +3,7 @@
 let form = document.forms.clock;
 let button = document.getElementById('button');
 button.addEventListener('click', validateDiameter, false);
-button.addEventListener('click', drawClock, false);
+// button.addEventListener('click', drawClock, false);
 form.addEventListener('submit', clickButton, false);
 
 function clickButton(eo) {
@@ -18,19 +18,18 @@ function validateDiameter(eo) {
 	let input = document.getElementById('diameter');
 	let inputValue = input.value;
 	let errorMessage = document.getElementById('error');
-	let valid = false;
 
-	if (inputValue < 200 || inputValue > 800) {
+	if (inputValue == '') {
+		errorMessage.innerHTML = 'введите размер часов';
+	} else if (inputValue < 200 || inputValue > 800) {
 		errorMessage.innerHTML = 'размер часов должен быть в диапазоне 200 - 800';
 	} else {
 		errorMessage.innerHTML = '';
-		valid = true;
+		drawClock();
 	}
-	return valid;
 }
 
-function drawClock(eo) {
-	eo = eo || window.event;
+function drawClock() {
 
 	let container = document.getElementById('wrapper');
 
