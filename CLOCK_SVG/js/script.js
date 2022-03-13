@@ -105,7 +105,6 @@ function drawClock() {
 	hourHand.setAttribute('stroke-width', hourHandWidth);
 	hourHand.setAttribute('stroke-linecap', 'round');
 	hourHand.setAttribute('stroke', 'rgb(66, 66, 66)');
-	hourHand.style.position = 'absolute';
 	hourHand.style.transformOrigin = `${clockRadius}px ${clockRadius}px`;
 	svg.appendChild(hourHand);
 	let minuteHand = document.createElementNS('http://www.w3.org/2000/svg', 'line');
