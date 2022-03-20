@@ -1,0 +1,76 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+#wrapper {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	width: 100vw;
+	font-family: sans-serif;
+}
+
+#wrapper > div {
+	width: 49%;
+}
+
+form .form-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+input,
+select,
+textarea {
+	font-size: 15px;
+	padding: 2px;
+}
+
+.form-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	min-height: 1.5em;
+}
+
+.form-row .labels {
+	min-width: 160px;
+	padding: 2px;
+}
+
+.form-row .longtext {
+	flex-basis: calc(100% - 160px);
+	flex-grow: 1;
+}
+
+.form-row .number {
+	flex-basis: calc((100% - 160px) / 4);
+	min-width: 170px;
+}
+
+.form-row .combo,
+.form-row .shorttext {
+	flex-basis: calc((100% - 160px) / 2);
+	min-width: 170px;
+}
+
+.form-row .radio-label {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	gap: 5px;
+}
+
+#payment {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.form-row .memo {
+	flex-basis: 100%;
+	min-height: 5em;
+}
