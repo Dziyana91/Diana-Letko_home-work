@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(90deg, rgba(197, 131, 217, 0.6), rgba(82, 125, 182, 0.6));
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 98%;
+	height: 98%;
+	/* font-family: "Montserrat", sans-serif; */
+	position: relative;
+	font-size: 15px;
+}
+
+#menu-buttons {
+	padding: 2%;
+	width: 20%;
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	gap: 5%;
+	z-index: 1;
+}
+
+#menu-buttons button {
+	text-transform: uppercase;
+	height: 8%;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(238, 238, 236, 1));
+	border: none;
+	border-radius: 10px;
+	box-shadow: 0 3px 0 rgba(214, 212, 212, 1);
+	font-family: "Montserrat", sans-serif;
+	font-weight: 600;
+	font-size: 150%;
+	letter-spacing: 2px;
+	color: rgb(62, 145, 175);
+}
+
+#menu-buttons button:active {
+	box-shadow: 0 0 6px rgb(201, 200, 200) inset;
+}
+
+#play-field {
+	display: flex;
+	width: 70%;
+	height: 80%;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 6%;
+	z-index: 1;
+}
+
+.form-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 49%;
+}
+
+.form-container button,
+.form-container form [type="submit"] {
+	font-size: 18px;
+	min-height: 3em;
+	border: none;
+	background-color: lightgrey;
+}
+
+.form-container form input[type="submit"] {
+	min-height: 2em;
+	padding: 5px;
+}
+
+.form-container button:hover,
+.form-container form [type="submit"]:hover {
+	background: linear-gradient(90deg, rgb(197, 131, 217), rgb(82, 125, 182));
+	box-shadow: 0 0 5px black;
+}
+
+.form-container button:active,
+.form-container form [type="submit"]:active {
+	box-shadow: 0 0 3px white inset;
+	border-radius: 5px;
+}
+
+.form-container form .form-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+input,
+select,
+textarea {
+	font-size: 15px;
+	padding: 2px;
+}
+
+.form-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	min-height: 1.5em;
+}
+
+.form-row .labels {
+	min-width: 160px;
+	padding: 2px;
+}
+
+.form-row .longtext {
+	flex-basis: calc(100% - 160px);
+	flex-grow: 1;
+}
+
+.form-row .number {
+	flex-basis: calc((100% - 160px) / 4);
+	min-width: 170px;
+}
+
+/* .form-row .number[name="age"] {
+	min-width: 55px;
+} */
+
+.form-row .combo,
+.form-row .shorttext {
+	flex-basis: calc((100% - 160px) / 2);
+	min-width: 170px;
+}
+
+.form-row .radio-label {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	gap: 5px;
+}
+
+#payment {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.form-row .memo {
+	flex-basis: 100%;
+	min-height: 5em;
+}
