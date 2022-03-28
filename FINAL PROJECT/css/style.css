@@ -56,6 +56,7 @@ body {
 
 #play-field {
 	display: flex;
+	justify-content: space-around;
 	width: 70%;
 	height: 80%;
 	background-color: rgba(255, 255, 255, 0.8);
@@ -63,97 +64,67 @@ body {
 	z-index: 1;
 }
 
-.form-container {
+#aboutDisplayField,
+#levelsField {
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
-	width: 49%;
+	gap: 5%;
+	padding: 5%;
+	font-family: "Montserrat", sans-serif;
 }
 
-.form-container button,
-.form-container form [type="submit"] {
-	font-size: 18px;
-	min-height: 3em;
-	border: none;
-	background-color: lightgrey;
+#aboutDisplayField h3,
+#levelsField h3 {
+	color: rgb(62, 145, 175);
+	margin: 10% 0 0 0;
+	text-align: center;
+	font-size: 200%;
 }
 
-.form-container form input[type="submit"] {
-	min-height: 2em;
-	padding: 5px;
+#aboutDisplayField p {
+	line-height: 200%;
+	font-size: 150%;
 }
 
-.form-container button:hover,
-.form-container form [type="submit"]:hover {
-	background: linear-gradient(90deg, rgb(197, 131, 217), rgb(82, 125, 182));
-	box-shadow: 0 0 5px black;
+#levelsList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 10%;
 }
 
-.form-container button:active,
-.form-container form [type="submit"]:active {
-	box-shadow: 0 0 3px white inset;
+#levelsList .lvlBtn {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 15%;
+	height: 150%;
+	border-radius: 25%;
+	background: linear-gradient(90deg, rgba(197, 131, 217, 1), rgba(82, 125, 182, 1));
+	box-shadow: 0 3px 0 rgb(197, 196, 196);
+	font-weight: 600;
+	color: white;
+	font-size: 130%;
+}
+
+#playArea {
+	position: relative;
+	width: 80%;
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	gap: 5%;
+	align-self: center;
+}
+
+#playArea #puzzleField {
+	height: 70%;
 	border-radius: 5px;
+	background-color: rgb(116, 165, 228);
 }
 
-.form-container form .form-wrapper {
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-}
-
-input,
-select,
-textarea {
-	font-size: 15px;
-	padding: 2px;
-}
-
-.form-row {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	min-height: 1.5em;
-}
-
-.form-row .labels {
-	min-width: 160px;
-	padding: 2px;
-}
-
-.form-row .longtext {
-	flex-basis: calc(100% - 160px);
-	flex-grow: 1;
-}
-
-.form-row .number {
-	flex-basis: calc((100% - 160px) / 4);
-	min-width: 170px;
-}
-
-/* .form-row .number[name="age"] {
-	min-width: 55px;
-} */
-
-.form-row .combo,
-.form-row .shorttext {
-	flex-basis: calc((100% - 160px) / 2);
-	min-width: 170px;
-}
-
-.form-row .radio-label {
-	display: flex;
-	flex-wrap: nowrap;
-	align-items: center;
-	gap: 5px;
-}
-
-#payment {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-}
-
-.form-row .memo {
-	flex-basis: 100%;
-	min-height: 5em;
+#playArea #peacesField {
+	height: 25%;
+	border-radius: 5px;
+	background-color: rgb(217, 147, 238);
 }

@@ -1,7 +1,6 @@
 "use strict";
 
-window.onload = addHexBackground;
-// window.onhashchange = switchToStateFromURLHash;
+// window.onload = addHexBackground;
 
 function addHexBackground() {
 	let bg = document.getElementById('wrapper');												// фон
