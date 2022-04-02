@@ -74,9 +74,7 @@ function createLevel(levelNumber) {
 		width: hexWidth,
 		height: hexHeight,
 		areaWidth: areaWidth,
-		areaHeight: areaHeight,
-		posX: 0,
-		posY: 0
+		areaHeight: areaHeight
 	};
 
 	// добавляем тег SVG
@@ -102,107 +100,4 @@ function createLevel(levelNumber) {
 	}
 
 	return levelContent;
-}
-
-function levelOne(svgTag, hexParameters) {
-
-	// рисуем поле пазла
-	let fieldHex = null;
-	// поле пазла
-	// количество шестиугольников
-	let hexField = [
-		'hex00',
-		'hex01',
-		'hex02',
-		'hex10',
-		'hex11',
-		'hex12',
-		'hex20',
-		'hex21',
-		'hex22'
-	];
-
-	let currentPosX = hexParameters.innerRadius;
-	let currentPosY = hexParameters.innerRadius;
-
-	for (let i = 0; i < hexField.length; i++) {
-
-		hexParameters.posX = currentPosX;
-		hexParameters.posY = currentPosY;
-
-		if (i == 2) {
-			currentPosX = hexParameters.innerRadius * 2;
-			currentPosY += hexParameters.outerRadius * 1.5;
-		} else if (i == 5) {
-			currentPosX = hexParameters.innerRadius * 3;
-			currentPosY += hexParameters.outerRadius * 1.5;
-		} else {
-			currentPosX += hexParameters.innerRadius * 2;
-		}
-
-		fieldHex = addFieldHex(hexParameters);
-
-		fieldHex.setAttribute('class', hexField[i]);
-
-		//* добавить обработчики событий
-		svgTag.appendChild(fieldHex);
-	}
-
-	// рисуем кусочки пазла
-	let puzzleHex = null;
-
-	let hexVer1 = [
-		'hex00',
-		'hex02',
-		'hex10',
-		'hex12',
-		'hex20',
-		'hex22'
-	];
-
-	let hexVer2 = [
-		'hex01',
-		'hex11',
-		'hex21'
-	];
-
-	// максимум 3 цвета
-	let colors = [
-		'rgb(84,63,207)',
-		'rgb(207,63,112)',
-		'rgb(63,187,207)'
-	];
-
-	hexParameters.posX = hexParameters.innerRadius;
-	hexParameters.posY = hexParameters.areaHeight - hexParameters.height - hexParameters.areaHeight * 2.5 / 100;
-
-	for (let i = 0; i < hexVer1.length; i++) {
-
-		puzzleHex = addPuzzleHex(hexParameters, colors);
-		puzzleHex.setAttribute('class', hexVer1[i]);
-
-		hexParameters.posX += hexParameters.innerRadius * 3;
-
-		//* добавить обработчики событий
-		svgTag.appendChild(puzzleHex);
-	}
-
-	return svgTag;
-}
-
-function addFieldHex(hexParameters) {
-	let newHex = null;
-	let hex = null;
-
-	newHex = new HEX();
-	hex = newHex.draw(hexParameters.hexSide, hexParameters.outerRadius, hexParameters.innerRadius).color('rgba(82, 125, 182)', 'white', 0.5).setPosition(hexParameters).hex;
-	return hex;
-}
-
-function addPuzzleHex(hexParameters, colors) {
-	let newHex = null;
-	let hex = null;
-	newHex = new HexPiece();
-	hex = newHex.draw(hexParameters.hexSide, hexParameters.outerRadius, hexParameters.innerRadius).color(colors[0], colors[0], colors[1], colors[1], colors[0], colors[0]).combine().setPosition(hexParameters).hex;
-	return hex;
 }

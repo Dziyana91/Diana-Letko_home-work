@@ -1,7 +1,5 @@
 "use strict";
 
-// window.onload = addHexBackground;
-
 function addHexBackground() {
 	let bg = document.getElementById('wrapper');												// фон
 
@@ -39,7 +37,11 @@ function addHexBackground() {
 
 	// добавляем шестиугольники на фон
 	for (let i = 0; i < normalHexCount; i++) {
+
 		currentHexParameters = {
+			hexSide: hexSide,
+			outerRadius: outerRadius,
+			innerRadius: innerRadius,
 			width: hexWidth,
 			height: hexHeight,
 			fieldWidth: bgWidth,
@@ -47,17 +49,21 @@ function addHexBackground() {
 			posX: (function () { return mathRandomDiap(0, bgWidth - hexWidth) }()),
 			posY: (function () { return mathRandomDiap(0, bgHeight - hexHeight) }()),
 			speedX: setSpeed(-2, 2),
-			speedY: setSpeed(-1, 1),
+			speedY: setSpeed(-1, 1)
 		}
+
 		newHex = new HEX();
-		normalHex = newHex.draw(hexSide, outerRadius, innerRadius).color('none', 'white', 0.5).setPosition(currentHexParameters).hex;
-		// requestAnimationFrame(function () { bgMotion(normalHex, currentHexParameters, newHex) });
+		normalHex = newHex.draw(currentHexParameters).color('none', 'white', 0.5).setPosition(currentHexParameters).hex;
 		newHex.move(currentHexParameters);
 		svg.appendChild(normalHex);
 	}
 
 	for (let i = 0; i < bigHexCount; i++) {
+
 		currentHexParameters = {
+			hexSide: hexSide * bigScaleCoef,
+			outerRadius: outerRadius * bigScaleCoef,
+			innerRadius: innerRadius * bigScaleCoef,
 			width: hexWidth * bigScaleCoef,
 			height: hexHeight * bigScaleCoef,
 			fieldWidth: bgWidth,
@@ -65,16 +71,21 @@ function addHexBackground() {
 			posX: (function () { return mathRandomDiap(0, bgWidth - hexWidth * bigScaleCoef) }()),
 			posY: (function () { return mathRandomDiap(0, bgHeight - hexHeight * bigScaleCoef) }()),
 			speedX: setSpeed(-2, 2),
-			speedY: setSpeed(-1, 1),
+			speedY: setSpeed(-1, 1)
 		}
+
 		newHex = new HEX();
-		bigHex = newHex.draw(hexSide * bigScaleCoef, outerRadius * bigScaleCoef, innerRadius * bigScaleCoef).color('none', 'white', 0.5).setPosition(currentHexParameters).hex;
+		bigHex = newHex.draw(currentHexParameters).color('none', 'white', 0.5).setPosition(currentHexParameters).hex;
 		newHex.move(currentHexParameters);
 		svg.appendChild(bigHex)
 	}
 
 	for (let i = 0; i < smallHexCount; i++) {
+
 		currentHexParameters = {
+			hexSide: hexSide * smallScaleCoef,
+			outerRadius: outerRadius * smallScaleCoef,
+			innerRadius: innerRadius * smallScaleCoef,
 			width: hexWidth * smallScaleCoef,
 			height: hexHeight * smallScaleCoef,
 			fieldWidth: bgWidth,
@@ -82,10 +93,11 @@ function addHexBackground() {
 			posX: (function () { return mathRandomDiap(0, bgWidth - hexWidth * smallScaleCoef) }()),
 			posY: (function () { return mathRandomDiap(0, bgHeight - hexHeight * smallScaleCoef) }()),
 			speedX: setSpeed(-2, 2),
-			speedY: setSpeed(-1, 1),
+			speedY: setSpeed(-1, 1)
 		}
+
 		newHex = new HEX();
-		smallHex = newHex.draw(hexSide * smallScaleCoef, outerRadius * smallScaleCoef, innerRadius * smallScaleCoef).color('none', 'white', 0.5).setPosition(currentHexParameters).hex;
+		smallHex = newHex.draw(currentHexParameters).color('none', 'white', 0.5).setPosition(currentHexParameters).hex;
 		newHex.move(currentHexParameters);
 		svg.appendChild(smallHex);
 	}
