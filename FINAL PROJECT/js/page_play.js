@@ -60,6 +60,10 @@ function createLevel(levelNumber) {
 	let areaWidth = playArea.offsetWidth * 80 / 100;
 	let areaHeight = playArea.offsetHeight * 90 / 100;
 
+	if (areaWidth > areaHeight) {
+		areaWidth = areaHeight;
+	};
+
 	const n = 6;																	// !не менять - количество сторон многоугольника
 	let innerRadius = areaWidth * 10 / 100; 								// радиусу внутренней окружности многоугольника - высота треугольника
 	let outerRadius = innerRadius / n / Math.cos(180 / n);			// радиусу внешней окружности многоугольника
@@ -83,6 +87,7 @@ function createLevel(levelNumber) {
 	svg.setAttribute('height', areaHeight);
 	svg.style.position = 'absolute';
 	svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+	svg.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
 
 	let levelContent = null;
 
