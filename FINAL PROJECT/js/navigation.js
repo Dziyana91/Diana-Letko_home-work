@@ -3,6 +3,7 @@
 window.onload = function () {
 	addHexBackground();
 	trackEventsMainPage();
+	checkMusicAndSoundsStatus();
 };
 
 // в закладке УРЛа будем хранить разделённые подчёркиваниями слова

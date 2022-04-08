@@ -58,7 +58,7 @@ class HexPiece {
 		this.arrowPic.setAttribute('y', `${hexParameters.outerRadius - hexParameters.innerRadius + hexParameters.innerRadius / 2}`);
 		// this.arrowPic.setAttribute('style', 'position: absolute');
 		this.arrowPic.setAttribute('style', 'z-index: 1');
-		this.arrowPic.setAttribute('xlink:href', `../images/arrow_rotate.png`);
+		this.arrowPic.setAttribute('xlink:href', 'media/arrow_rotate.png');
 		this.hex.appendChild(this.arrowPic);
 		return this;
 	}

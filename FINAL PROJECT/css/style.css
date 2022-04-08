@@ -50,7 +50,8 @@ body {
 	color: rgb(62, 145, 175);
 }
 
-#menu-buttons button:active {
+#menu-buttons button:active,
+#settingsField .small-buttons:active {
 	box-shadow: 0 0 6px rgb(201, 200, 200) inset;
 }
 
@@ -71,6 +72,32 @@ body {
 	gap: 5%;
 	padding: 5%;
 	font-family: "Montserrat", sans-serif;
+}
+
+#settingsField {
+	display: flex;
+	flex-direction: column;
+	gap: 10%;
+	padding: 2%;
+	height: 80%;
+	width: 80%;
+	align-self: center;
+	border-radius: 5px;
+	background-color: rgba(217, 147, 238, 0.8);
+}
+
+#settingsField .small-buttons {
+	width: 10%;
+	height: 10%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 150%;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(238, 238, 236, 1));
+	border-radius: 10px;
+	box-shadow: 0 3px 0 rgba(214, 212, 212, 1);
+	color: rgb(62, 145, 175);
+	/* font-weight: 800; */
 }
 
 #aboutDisplayField h3,
