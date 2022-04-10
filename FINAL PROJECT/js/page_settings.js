@@ -170,3 +170,11 @@ function soundStatusUpdate(musicAndSoundsStatusH, button) {
 
 	localStorage['musicAndSounds'] = JSON.stringify(musicAndSoundsStatusH);
 }
+
+function playButtonSound() {
+	// let sound = document.getElementById('hexRotateSound');
+	let musicAndSoundsStatusH = JSON.parse(window.localStorage.getItem('musicAndSounds'));
+	if (musicAndSoundsStatusH.sound) {
+		buttonClickSound.play();
+	}
+}

@@ -15,10 +15,8 @@ window.onload = function () {
 // отслеживаем изменение закладки в УРЛе
 // оно происходит при любом виде навигации
 // в т.ч. при нажатии кнопок браузера ВПЕРЁД/НАЗАД
-window.onhashchange = function () {
-	// befUnload();
-	switchToStateFromURLHash();
-}
+window.onhashchange = switchToStateFromURLHash;
+
 // переключаемся в состояние, которое сейчас прописано в закладке УРЛ
 switchToStateFromURLHash();
 
