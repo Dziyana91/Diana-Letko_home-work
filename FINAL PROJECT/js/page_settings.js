@@ -62,7 +62,7 @@ function settingsPage() {
 	return settingsField;
 }
 
-
+// глобальные переменные - звуки и музыка
 let fontMusic = new Audio();
 fontMusic.src = 'media/fontMusic.wav';
 fontMusic.loop = true;
@@ -93,6 +93,7 @@ function checkMusicAndSoundsStatus() {
 	// }
 	document.body.removeEventListener('mousemove', checkMusicAndSoundsStatus, false);
 
+	// ! не работает - удаляются не все теги audio
 	// let wrapper = document.getElementById('wrapper');
 	// let buttonClickSound = document.createElement('AUDIO');
 	// buttonClickSound.src = 'media/buttonClickSound.wav';
@@ -155,6 +156,7 @@ function soundStatusUpdate(musicAndSoundsStatusH, button) {
 		soundTextField.innerHTML = 'звуки выключены';
 		// let sounds = wrapper.getElementsByClassName('sounds');
 		// console.log(sounds);
+		// ! не работает - удаляются не все теги audio
 		// for (let i = 0; i < sounds.length; i++) {
 		// 	wrapper.removeChild(sounds[i]);
 		// }

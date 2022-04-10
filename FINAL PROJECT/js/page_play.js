@@ -29,12 +29,6 @@ function playPage() {
 
 function openLevel(levelNumber) {
 
-	// let displayArea = document.getElementById('play-field');
-	// let currentContent = displayArea.childNodes;
-	// for (let i = 0; i < currentContent.length; i++) {
-	// 	displayArea.removeChild(currentContent[i]);
-	// }
-
 	let playArea = document.createElement('div');
 	playArea.id = 'playArea';
 
@@ -49,8 +43,8 @@ function openLevel(levelNumber) {
 	restartButton.className = 'small-buttons';
 	let restartButtonIcon = '<i class="fas fa-undo-alt"></i>';		// fontawesome icon
 	restartButton.innerHTML = restartButtonIcon;
-	restartButton.addEventListener('click', function () { playButtonSound(); openLevel(parseInt(levelNumber)) }, false);
-	restartButton.addEventListener('touchend', function () { playButtonSound(); openLevel(parseInt(levelNumber)) }, false);
+	restartButton.addEventListener('click', function () { playButtonSound(); location.reload(); }, false);
+	restartButton.addEventListener('touchend', function () { playButtonSound(); location.reload(); }, false);
 	piecesField.appendChild(restartButton);
 
 	let nextLevelButton = document.createElement('div');
@@ -58,6 +52,7 @@ function openLevel(levelNumber) {
 	nextLevelButton.className = 'small-buttons';
 	let nextLevelButtonIcon = '<i class="far fa-arrow-alt-circle-right"></i>';		// fontawesome icon
 	nextLevelButton.innerHTML = nextLevelButtonIcon;
+	nextLevelButton.style.display = 'none';
 	piecesField.appendChild(nextLevelButton);
 
 
@@ -68,7 +63,6 @@ function openLevel(levelNumber) {
 
 	playArea.appendChild(levelPuzzle);
 	playArea.appendChild(piecesField);
-	// displayArea.appendChild(playArea);
 	return playArea
 }
 

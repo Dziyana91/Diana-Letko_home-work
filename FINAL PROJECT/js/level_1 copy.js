@@ -2,8 +2,47 @@
 
 function levelOne(svgTag, hexParameters) {
 
-	let currentPosX = null;
-	let currentPosY = null;
+	// рисуем поле пазла
+	let fieldHex = null;
+	// поле пазла
+	// количество шестиугольников
+	let hexField = [
+		'hex00',
+		'hex01',
+		'hex02',
+		'hex10',
+		'hex11',
+		'hex12',
+		'hex20',
+		'hex21',
+		'hex22'
+	];
+
+	let currentPosX = hexParameters.innerRadius;
+	let currentPosY = hexParameters.innerRadius;
+
+	for (let i = 0; i < hexField.length; i++) {
+
+		hexParameters.posX = currentPosX;
+		hexParameters.posY = currentPosY;
+
+		if (i == 2) {
+			currentPosX = hexParameters.innerRadius * 2;
+			currentPosY += hexParameters.outerRadius * 1.5;
+		} else if (i == 5) {
+			currentPosX = hexParameters.innerRadius * 3;
+			currentPosY += hexParameters.outerRadius * 1.5;
+		} else {
+			currentPosX += hexParameters.innerRadius * 2;
+		}
+
+		fieldHex = addFieldHex(hexParameters);
+
+		fieldHex.setAttribute('class', hexField[i]);
+
+		//* добавить обработчики событий
+		svgTag.appendChild(fieldHex);
+	}
 
 	// максимум 3 цвета
 	let colorsV1 = [
@@ -26,7 +65,6 @@ function levelOne(svgTag, hexParameters) {
 	hexParameters.posX = currentPosX;
 	hexParameters.posY = currentPosY;
 	hexParameters.colors = colorsV1;
-	hexParameters.hexId = 'hex00';
 	let hex00 = addStaticPuzzleHex(hexParameters);
 
 	// кусочек 2 вращаемый
@@ -39,8 +77,6 @@ function levelOne(svgTag, hexParameters) {
 		'rgb(84,63,207)',		// purple
 		'rgb(207,63,112)'		// red
 	];
-	hexParameters.hexId = 'hex01';
-	hexParameters.winColors = colorsV2;
 	let hex01 = addRotatablePuzzleHex(hexParameters);
 
 	// кусочек 3 вращаемый
@@ -49,22 +85,22 @@ function levelOne(svgTag, hexParameters) {
 	hexParameters.posX = currentPosX;
 	hexParameters.posY = currentPosY;
 	hexParameters.colors = colorsV1;
-	hexParameters.hexId = 'hex02';
-	hexParameters.winColors = colorsV1;
 	let hex02 = addRotatablePuzzleHex(hexParameters);
 
-	// кусочек 4 вращаемый
+	// кусочек 4 передвигаемый
+	// currentPosX = hexParameters.innerRadius;
+	// currentPosY = hexParameters.areaHeight - hexParameters.height - hexParameters.areaHeight * 2.5 / 100;
 	currentPosX = hexParameters.innerRadius * 2;
 	currentPosY = hexParameters.innerRadius + hexParameters.outerRadius * 1.5;
 	hexParameters.posX = currentPosX;
 	hexParameters.posY = currentPosY;
+	// hexParameters.colors = colorsV1;
+	// let hex10 = addMovablePuzzleHex(hexParameters);
 	hexParameters.colors = [
 		'rgb(207,63,112)',	// red
 		'rgb(207,63,112)',	// red
 		'rgb(84,63,207)'		// purple
 	];
-	hexParameters.hexId = 'hex10';
-	hexParameters.winColors = colorsV1;
 	let hex10 = addRotatablePuzzleHex(hexParameters);
 
 	// кусочек 5 статический
@@ -73,10 +109,11 @@ function levelOne(svgTag, hexParameters) {
 	hexParameters.posX = currentPosX;
 	hexParameters.posY = currentPosY;
 	hexParameters.colors = colorsV2;
-	hexParameters.hexId = 'hex11';
 	let hex11 = addStaticPuzzleHex(hexParameters);
 
-	// кусочек 6 вращаемый
+	// кусочек 6 передвигаемый
+	// currentPosX = hexParameters.innerRadius * 4;
+	// currentPosY = hexParameters.areaHeight - hexParameters.height - hexParameters.areaHeight * 2.5 / 100;
 	currentPosX = hexParameters.innerRadius * 6;
 	currentPosY = hexParameters.innerRadius + hexParameters.outerRadius * 1.5;
 	hexParameters.posX = currentPosX;
@@ -86,22 +123,21 @@ function levelOne(svgTag, hexParameters) {
 		'rgb(207,63,112)',	// red
 		'rgb(207,63,112)'		// red
 	];
-	hexParameters.hexId = 'hex12';
-	hexParameters.winColors = colorsV1;
 	let hex12 = addRotatablePuzzleHex(hexParameters);
+	// hexParameters.colors = colorsV1;
+	// let hex12 = addMovablePuzzleHex(hexParameters);
 
 	// кусочек 7 вращаемый
 	currentPosX = hexParameters.innerRadius * 3;
 	currentPosY = hexParameters.innerRadius + hexParameters.outerRadius * 3;
 	hexParameters.posX = currentPosX;
 	hexParameters.posY = currentPosY;
+	// hexParameters.colors = colorsV1;
 	hexParameters.colors = [
 		'rgb(84,63,207)',		// purple
 		'rgb(207,63,112)',	// red
 		'rgb(207,63,112)'		// red
 	];
-	hexParameters.hexId = 'hex20';
-	hexParameters.winColors = colorsV1;
 	let hex20 = addRotatablePuzzleHex(hexParameters);
 
 	// кусочек 8 вращаемый
@@ -109,13 +145,12 @@ function levelOne(svgTag, hexParameters) {
 	currentPosY = hexParameters.innerRadius + hexParameters.outerRadius * 3;
 	hexParameters.posX = currentPosX;
 	hexParameters.posY = currentPosY;
+	// hexParameters.colors = colorsV2;
 	hexParameters.colors = [
 		'rgb(207,63,112)',	// red
 		'rgb(84,63,207)',		// purple
 		'rgb(84,63,207)'		// purple
 	];
-	hexParameters.hexId = 'hex21';
-	hexParameters.winColors = colorsV2;
 	let hex21 = addRotatablePuzzleHex(hexParameters);
 
 	// кусочек 9 статический
@@ -124,7 +159,6 @@ function levelOne(svgTag, hexParameters) {
 	hexParameters.posX = currentPosX;
 	hexParameters.posY = currentPosY;
 	hexParameters.colors = colorsV1;
-	hexParameters.hexId = 'hex22';
 	let hex22 = addStaticPuzzleHex(hexParameters);
 
 	svgTag.appendChild(hex00); // статический
@@ -132,10 +166,16 @@ function levelOne(svgTag, hexParameters) {
 	svgTag.appendChild(hex22); // статический
 	svgTag.appendChild(hex01); // вращаемый
 	svgTag.appendChild(hex02); // вращаемый
-	svgTag.appendChild(hex10); // вращаемый
-	svgTag.appendChild(hex12);	// вращаемый
+	svgTag.appendChild(hex10); // передвигаемый
+	svgTag.appendChild(hex12);	// передвигаемый
 	svgTag.appendChild(hex20); // вращаемый
 	svgTag.appendChild(hex21); // вращаемый
 
 	return svgTag;
 }
+
+// let colors = [
+// 	'rgb(84,63,207)',		// purple
+// 	'rgb(207,63,112)',	// red
+// 	'rgb(63, 187, 207)'	// blue
+// ];

@@ -24,3 +24,14 @@ function playButtonSound() {
 	}
 }
 
+window.onbeforeunload = befUnload;
+
+let gameStarted = false;
+
+function befUnload(eo) {
+	eo = eo || window.event;
+	// если текст изменён, попросим браузер задать вопрос пользователю
+	if (gameStarted)
+		eo.returnValue = 'Прогресс будет утерян.';
+}
+

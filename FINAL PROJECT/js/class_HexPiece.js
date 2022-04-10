@@ -67,12 +67,6 @@ class HexPiece {
 
 }
 
-// class StaticHex extends HexPiece {
-// 	constructor() {
-// 		super();
-// 	}
-// }
-
 function addStaticPuzzleHex(hexParameters) {
 
 	let newHex = new HexPiece();
@@ -81,12 +75,20 @@ function addStaticPuzzleHex(hexParameters) {
 	return hex;
 }
 
+//* глобальная переменная - статус позиции каждой поворачиваемой детали
+// ключ - имя детали
+// значение: 1 - деталь стоит правильно, 0 - деталь стоит неправильно
+let hexesStatusH = {};
+
 function addRotatablePuzzleHex(hexParameters) {
 
 	let newHex = new HexPiece();
 	let hex = newHex.draw(hexParameters).color(hexParameters).combine().setPosition(hexParameters).addOutline(hexParameters).addImage(hexParameters).hex;
 
 	let colorsA = hexParameters.colors;
+
+	let hexIdS = hexParameters.hexId;						// строка с именем детали
+	let winColorsA = hexParameters.winColors;		// правильные цвета детали
 
 	function rotateHex() {
 		// третий цвет переставляем на первое место, выглядит как поворот шестиугольника по часовой стрелке
@@ -95,6 +97,17 @@ function addRotatablePuzzleHex(hexParameters) {
 		colorsA.unshift(colorToUpdate);
 		hexParameters.colors = colorsA;
 		newHex.color(hexParameters);
+		updateHexesStatus();
+		winCheck();
+	}
+
+	function updateHexesStatus() {
+		console.log('hex id: ' + hexIdS);
+		if (colorsA[0] === winColorsA[0] && colorsA[1] === winColorsA[1] && colorsA[2] === winColorsA[2]) {
+			hexesStatusH[hexIdS] = 1;
+		} else {
+			hexesStatusH[hexIdS] = 0;
+		}
 	}
 
 	function playHexSound() {
@@ -105,12 +118,26 @@ function addRotatablePuzzleHex(hexParameters) {
 		}
 	}
 
-	hex.addEventListener('click', () => { playHexSound(); rotateHex() }, false);
-	hex.addEventListener('touchend', () => { playHexSound(); rotateHex() }, false);
+	hex.addEventListener('click', () => {
+		gameStarted = true;
+		playHexSound();
+		// updateHexesStatus();
+		rotateHex();
+		// winCheck();
+	}, false);
+	hex.addEventListener('touchend', () => {
+		gameStarted = true;
+		playHexSound();
+		// updateHexesStatus();
+		rotateHex();
+		// winCheck();
+	}, false);
 	hex.addEventListener('mouseover', () => hex.setAttribute('style', 'cursor: pointer'), false);
+	updateHexesStatus(hexParameters);
 	return hex;
 }
 
+//! не используется, упростила и использовала только вращаемые детали
 function addMovablePuzzleHex(hexParameters) {
 
 	let newHex = new HexPiece();
@@ -122,7 +149,6 @@ function addMovablePuzzleHex(hexParameters) {
 	let shiftY = 0;
 	let index = 0;
 
-
 	function grabHex(eo) {
 		eo = eo || window.event;
 		eo.preventDefault();
@@ -133,6 +159,18 @@ function addMovablePuzzleHex(hexParameters) {
 	hex.addEventListener('touchend', grabHex, false);
 
 	//* добавить обработчик событий on hover drag
-
 	return hex;
+}
+
+function winCheck() {
+	let multipl = 1;
+	for (let key in hexesStatusH) {
+		console.log(key + ': ' + hexesStatusH[key]);
+		multipl *= hexesStatusH[key];
+	}
+
+	if (multipl > 0) {
+		hexesStatusH = {};
+		setTimeout(() => { alert('Уровень пройден!'); }, 60);
+	}
 }
