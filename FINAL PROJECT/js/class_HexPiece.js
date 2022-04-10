@@ -123,16 +123,12 @@ function addRotatablePuzzleHex(hexParameters) {
 	hex.addEventListener('click', () => {
 		gameStarted = true;
 		playHexSound();
-		// updateHexesStatus();
 		rotateHex();
-		// winCheck();
 	}, false);
 	hex.addEventListener('touchend', () => {
 		gameStarted = true;
 		playHexSound();
-		// updateHexesStatus();
 		rotateHex();
-		// winCheck();
 	}, false);
 	hex.addEventListener('mouseover', () => hex.setAttribute('style', 'cursor: pointer'), false);
 	updateHexesStatus(hexParameters);
@@ -172,7 +168,9 @@ function winCheck() {
 	}
 
 	if (multipl > 0) {
-		hexesStatusH = {};
+		for (let key in hexesStatusH) {
+			delete hexesStatusH[key];
+		}
 		setTimeout(() => { alert('Уровень пройден!'); }, 60);
 	}
 }
