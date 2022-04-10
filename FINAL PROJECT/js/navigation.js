@@ -16,7 +16,6 @@ window.onload = function () {
 // оно происходит при любом виде навигации
 // в т.ч. при нажатии кнопок браузера ВПЕРЁД/НАЗАД
 window.onhashchange = switchToStateFromURLHash;
-// window.onload = trackEventsMainPage;
 
 // переключаемся в состояние, которое сейчас прописано в закладке УРЛ
 switchToStateFromURLHash();
@@ -27,17 +26,17 @@ function trackEventsMainPage() {
 	let championsBtn = document.getElementById('champions');
 	let aboutBtn = document.getElementById('about');
 
-	playBtn.addEventListener('click', switchToPlayPage, false);
-	playBtn.addEventListener('touchend', switchToPlayPage, false);
+	playBtn.addEventListener('click', () => { playButtonSound(); switchToPlayPage() }, false);
+	playBtn.addEventListener('touchend', () => { playButtonSound(); switchToPlayPage() }, false);
 
-	settingsBtn.addEventListener('click', switchToSettingsPage, false);
-	settingsBtn.addEventListener('touchend', switchToSettingsPage, false);
+	settingsBtn.addEventListener('click', () => { playButtonSound(); switchToSettingsPage() }, false);
+	settingsBtn.addEventListener('touchend', () => { playButtonSound(); switchToSettingsPage() }, false);
 
-	championsBtn.addEventListener('click', switchToChampionsPage, false);
-	championsBtn.addEventListener('touchend', switchToChampionsPage, false);
+	championsBtn.addEventListener('click', () => { playButtonSound(); switchToChampionsPage() }, false);
+	championsBtn.addEventListener('touchend', () => { playButtonSound(); switchToChampionsPage() }, false);
 
-	aboutBtn.addEventListener('click', switchToAboutPage, false);
-	aboutBtn.addEventListener('touchend', switchToAboutPage, false);
+	aboutBtn.addEventListener('click', () => { playButtonSound(); switchToAboutPage() }, false);
+	aboutBtn.addEventListener('touchend', () => { playButtonSound(); switchToAboutPage() }, false);
 
 }
 
@@ -61,11 +60,11 @@ function switchToStateFromURLHash() {
 	if (stateStr != "") { // если закладка непустая, читаем из неё состояние и отображаем
 		let parts = stateStr.split("_")
 		SPAState = { pagename: parts[0] }; // первая часть закладки - номер страницы
-		// if (SPAState.pagename == 'Photo')
-		// 	SPAState.photoid = parts[1]; // для фото нужна ещё вторая часть закладки - номер фото
+		if (SPAState.pagename == 'Level')
+			SPAState.levelid = parts[1]; // для уровня нужна ещё вторая часть закладки - номер уровня
 	}
 	else
-		SPAState = { pagename: 'About' }; // иначе показываем главную страницу
+		SPAState = { pagename: 'About' }; // иначе показываем страницу с информацией
 
 	console.log('Новое состояние приложения:');
 	console.log(SPAState);
@@ -87,6 +86,9 @@ function switchToStateFromURLHash() {
 		case 'Champions':
 			pageHTML = championsPage();
 			break;
+		case 'Level':
+			pageHTML = openLevel(SPAState.levelid);
+			break;
 	}
 	let currentContent = displayArea.childNodes;
 	for (let i = 0; i < currentContent.length; i++) {
@@ -104,8 +106,8 @@ function switchToState(newState) {
 	// (т.к. записывается новый элемент истории просмотренных страниц)
 	// и для возможности передачи УРЛа другим лицам
 	let stateStr = newState.pagename;
-	// if (newState.pagename == 'Photo')
-	// 	stateStr += "_" + newState.photoid;
+	if (newState.pagename == 'Level')
+		stateStr += "_" + newState.levelid;
 	location.hash = stateStr;
 
 	// АВТОМАТИЧЕСКИ вызовется switchToStateFromURLHash()
@@ -129,4 +131,7 @@ function switchToAboutPage() {
 	switchToState({ pagename: 'About' });
 }
 
+function switchToLevelPage(levelId) {
+	switchToState({ pagename: 'Level', levelid: levelId });
+}
 

@@ -16,5 +16,11 @@ function mathRandomDiap(n, m) {
 	) + n;
 }
 
-
+function playButtonSound() {
+	// let sound = document.getElementById('hexRotateSound');
+	let musicAndSoundsStatusH = JSON.parse(window.localStorage.getItem('musicAndSounds'));
+	if (musicAndSoundsStatusH.sound) {
+		buttonClickSound.play();
+	}
+}
 

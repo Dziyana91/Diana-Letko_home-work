@@ -19,8 +19,8 @@ function playPage() {
 		levelBtn.className = 'lvlBtn';
 		levelBtn.appendChild(document.createTextNode(levelNumber));
 
-		levelBtn.addEventListener('click', function () { openLevel(levelNumber) }, false);
-		levelBtn.addEventListener('touchend', function () { openLevel(levelNumber) }, false);
+		levelBtn.addEventListener('click', function () { playButtonSound(); switchToLevelPage(levelNumber) }, false);
+		levelBtn.addEventListener('touchend', function () { playButtonSound(); switchToLevelPage(levelNumber) }, false);
 		levelsList.appendChild(levelBtn);
 	}
 	levelsField.appendChild(levelsList);
@@ -29,11 +29,11 @@ function playPage() {
 
 function openLevel(levelNumber) {
 
-	let displayArea = document.getElementById('play-field');
-	let currentContent = displayArea.childNodes;
-	for (let i = 0; i < currentContent.length; i++) {
-		displayArea.removeChild(currentContent[i]);
-	}
+	// let displayArea = document.getElementById('play-field');
+	// let currentContent = displayArea.childNodes;
+	// for (let i = 0; i < currentContent.length; i++) {
+	// 	displayArea.removeChild(currentContent[i]);
+	// }
 
 	let playArea = document.createElement('div');
 	playArea.id = 'playArea';
@@ -41,16 +41,35 @@ function openLevel(levelNumber) {
 	let puzzleField = document.createElement('div');
 	puzzleField.id = 'puzzleField';
 
-	let peacesField = document.createElement('div');
-	peacesField.id = 'peacesField';
+	let piecesField = document.createElement('div');
+	piecesField.id = 'piecesField';
 
-	let levelPuzzle = createLevel(levelNumber);
+	let restartButton = document.createElement('div');
+	restartButton.id = 'restartButton';
+	restartButton.className = 'small-buttons';
+	let restartButtonIcon = '<i class="fas fa-undo-alt"></i>';		// fontawesome icon
+	restartButton.innerHTML = restartButtonIcon;
+	restartButton.addEventListener('click', function () { playButtonSound(); openLevel(parseInt(levelNumber)) }, false);
+	restartButton.addEventListener('touchend', function () { playButtonSound(); openLevel(parseInt(levelNumber)) }, false);
+	piecesField.appendChild(restartButton);
+
+	let nextLevelButton = document.createElement('div');
+	nextLevelButton.id = 'nextLevelButton';
+	nextLevelButton.className = 'small-buttons';
+	let nextLevelButtonIcon = '<i class="far fa-arrow-alt-circle-right"></i>';		// fontawesome icon
+	nextLevelButton.innerHTML = nextLevelButtonIcon;
+	piecesField.appendChild(nextLevelButton);
+
+
+	// SVG с пазлом
+	let levelPuzzle = createLevel(parseInt(levelNumber));
 
 	playArea.appendChild(puzzleField);
 
 	playArea.appendChild(levelPuzzle);
-	playArea.appendChild(peacesField);
-	displayArea.appendChild(playArea);
+	playArea.appendChild(piecesField);
+	// displayArea.appendChild(playArea);
+	return playArea
 }
 
 function createLevel(levelNumber) {
@@ -58,7 +77,8 @@ function createLevel(levelNumber) {
 	let playArea = document.getElementById('play-field');
 	// размер SVG для пазла 80% от ширины всего поля
 	let areaWidth = playArea.offsetWidth * 80 / 100;
-	let areaHeight = playArea.offsetHeight * 90 / 100;
+	let areaHeight = playArea.offsetHeight * 70 / 100;
+	// let areaHeight = areaWidth;
 
 	if (areaWidth > areaHeight) {
 		areaWidth = areaHeight;

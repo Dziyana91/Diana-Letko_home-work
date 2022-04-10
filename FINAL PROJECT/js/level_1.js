@@ -170,6 +170,7 @@ function levelOne(svgTag, hexParameters) {
 	svgTag.appendChild(hex12);	// передвигаемый
 	svgTag.appendChild(hex20); // вращаемый
 	svgTag.appendChild(hex21); // вращаемый
+
 	return svgTag;
 }
 

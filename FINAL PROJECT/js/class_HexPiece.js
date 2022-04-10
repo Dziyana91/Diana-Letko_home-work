@@ -51,14 +51,11 @@ class HexPiece {
 	}
 
 	addImage(hexParameters) {
-		// this.hex.setAttribute('style', 'position: relative');
-		this.arrowPic.setAttribute('width', `${hexParameters.innerRadius}`);
-		this.arrowPic.setAttribute('height', `${hexParameters.innerRadius}`);
-		this.arrowPic.setAttribute('x', `${hexParameters.innerRadius / 2}`);
-		this.arrowPic.setAttribute('y', `${hexParameters.outerRadius - hexParameters.innerRadius + hexParameters.innerRadius / 2}`);
-		// this.arrowPic.setAttribute('style', 'position: absolute');
-		this.arrowPic.setAttribute('style', 'z-index: 1');
-		this.arrowPic.setAttribute('xlink:href', 'media/arrow_rotate.png');
+		this.arrowPic.setAttribute('width', `${hexParameters.innerRadius / 1.5}`);
+		this.arrowPic.setAttribute('height', `${hexParameters.innerRadius / 1.5}`);
+		this.arrowPic.setAttribute('x', `${hexParameters.innerRadius / 1.5}`);
+		this.arrowPic.setAttribute('y', `${hexParameters.outerRadius - hexParameters.innerRadius + hexParameters.innerRadius / 1.5}`);
+		this.arrowPic.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', 'media/arrow_rotate.png');
 		this.hex.appendChild(this.arrowPic);
 		return this;
 	}
@@ -89,12 +86,9 @@ function addRotatablePuzzleHex(hexParameters) {
 	let newHex = new HexPiece();
 	let hex = newHex.draw(hexParameters).color(hexParameters).combine().setPosition(hexParameters).addOutline(hexParameters).addImage(hexParameters).hex;
 
-
 	let colorsA = hexParameters.colors;
 
-	function rotateHex(eo) {
-		eo = eo || window.event;
-		eo.preventDefault();
+	function rotateHex() {
 		// третий цвет переставляем на первое место, выглядит как поворот шестиугольника по часовой стрелке
 		let colorToUpdate = colorsA[2];
 		colorsA.pop();
@@ -103,8 +97,16 @@ function addRotatablePuzzleHex(hexParameters) {
 		newHex.color(hexParameters);
 	}
 
-	hex.addEventListener('click', rotateHex, false);
-	hex.addEventListener('touchend', rotateHex, false);
+	function playHexSound() {
+		// let sound = document.getElementById('hexRotateSound');
+		let musicAndSoundsStatusH = JSON.parse(window.localStorage.getItem('musicAndSounds'));
+		if (musicAndSoundsStatusH.sound) {
+			hexRotateSound.play();
+		}
+	}
+
+	hex.addEventListener('click', () => { playHexSound(); rotateHex() }, false);
+	hex.addEventListener('touchend', () => { playHexSound(); rotateHex() }, false);
 	hex.addEventListener('mouseover', () => hex.setAttribute('style', 'cursor: pointer'), false);
 	return hex;
 }

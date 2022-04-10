@@ -17,7 +17,8 @@ body {
 
 #wrapper {
 	display: flex;
-	justify-content: space-between;
+	/* justify-content: space-between; */
+	gap: 10%;
 	align-items: center;
 	width: 98%;
 	height: 98%;
@@ -51,14 +52,15 @@ body {
 }
 
 #menu-buttons button:active,
-#settingsField .small-buttons:active {
+#settingsField .small-buttons:active,
+#piecesField .small-buttons:active {
 	box-shadow: 0 0 6px rgb(201, 200, 200) inset;
 }
 
 #play-field {
 	display: flex;
 	justify-content: space-around;
-	width: 70%;
+	width: 40%;
 	height: 80%;
 	background-color: rgba(255, 255, 255, 0.8);
 	border-radius: 6%;
@@ -75,8 +77,9 @@ body {
 }
 
 #settingsField {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-columns: 10% 1fr;
+	grid-template-rows: 10%  10%;
 	gap: 10%;
 	padding: 2%;
 	height: 80%;
@@ -87,8 +90,8 @@ body {
 }
 
 #settingsField .small-buttons {
-	width: 10%;
-	height: 10%;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -97,7 +100,16 @@ body {
 	border-radius: 10px;
 	box-shadow: 0 3px 0 rgba(214, 212, 212, 1);
 	color: rgb(62, 145, 175);
-	/* font-weight: 800; */
+}
+
+#settingsField .settings-text-field {
+	color: rgba(255, 255, 255, 1);
+	font-size: 150%;
+	display: flex;
+	align-items: center;
+	font-family: "Montserrat", sans-serif;
+	text-transform: uppercase;
+	font-weight: 700;
 }
 
 #aboutDisplayField h3,
@@ -150,8 +162,25 @@ body {
 	background-color: rgb(116, 165, 228);
 }
 
-#playArea #peacesField {
+#playArea #piecesField {
 	height: 25%;
 	border-radius: 5px;
 	background-color: rgb(217, 147, 238);
+	display: flex;
+	align-items: center;
+	gap: 10%;
+	padding: 5%;
+}
+
+#piecesField .small-buttons {
+	width: 10%;
+	height: 40%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 150%;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(238, 238, 236, 1));
+	border-radius: 10px;
+	box-shadow: 0 3px 0 rgba(214, 212, 212, 1);
+	color: rgb(62, 145, 175);
 }
