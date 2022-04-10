@@ -87,7 +87,7 @@ function addRotatablePuzzleHex(hexParameters) {
 
 	let colorsA = hexParameters.colors;
 
-	let hexIdS = hexParameters.hexId;						// строка с именем детали
+	let hexIdS = hexParameters.hexId;				// строка с именем детали
 	let winColorsA = hexParameters.winColors;		// правильные цвета детали
 
 	function rotateHex() {
@@ -103,6 +103,8 @@ function addRotatablePuzzleHex(hexParameters) {
 
 	function updateHexesStatus() {
 		console.log('hex id: ' + hexIdS);
+		console.log('hex color: ' + colorsA);
+		console.log('hex win color: ' + winColorsA)
 		if (colorsA[0] === winColorsA[0] && colorsA[1] === winColorsA[1] && colorsA[2] === winColorsA[2]) {
 			hexesStatusH[hexIdS] = 1;
 		} else {

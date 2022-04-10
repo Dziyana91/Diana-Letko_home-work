@@ -17,12 +17,10 @@ body {
 
 #wrapper {
 	display: flex;
-	/* justify-content: space-between; */
 	gap: 10%;
 	align-items: center;
 	width: 98%;
 	height: 98%;
-	/* font-family: "Montserrat", sans-serif; */
 	position: relative;
 	font-size: 15px;
 }
@@ -183,4 +181,121 @@ body {
 	border-radius: 10px;
 	box-shadow: 0 3px 0 rgba(214, 212, 212, 1);
 	color: rgb(62, 145, 175);
+}
+
+@media only all and (max-width: 1366px) {
+	#play-field {
+		width: 50%;
+	}
+}
+
+@media only all and (max-width: 1060px) {
+	#play-field {
+		width: 60%;
+	}
+
+	#menu-buttons button {
+		font-size: 120%;
+	}
+}
+
+@media only all and (max-width: 950px) {
+	#wrapper {
+		flex-direction: column;
+		gap: 5%;
+		align-items: center;
+	}
+
+	#menu-buttons {
+		width: 80%;
+		height: 10%;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row;
+		gap: 5%;
+	}
+	
+	#play-field {
+		width: 80%;
+	}
+
+	#menu-buttons button {
+		font-size: 120%;
+		height: 100%;
+		padding: 2%;
+	}
+}
+
+@media only all and (max-width: 900px) {
+	#wrapper {
+		gap: 1%;
+	}
+
+	#menu-buttons {
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		height: 20%;
+	}
+
+	#menu-buttons button {
+		height: 30%;
+	}
+
+	#play-field {
+		height: 70%;
+	}
+
+	#piecesField .small-buttons {
+		width: 15%;
+		height: 45%;
+	}
+}
+
+@media only all and (max-width: 580px) {
+	#play-field {
+		height: 50%;
+	}
+	#piecesField .small-buttons {
+		width: 20%;
+		height: 55%;
+		font-size: 120%;
+	}
+
+	#settingsField {
+		grid-template-columns: 15% 1fr;
+	}
+}
+
+@media only all and (max-width: 355px) {
+	#menu-buttons {
+		height: 15%;
+	}
+
+	#menu-buttons button {
+		font-size: 90%;
+		height: 20%;
+	}
+
+	#play-field {
+		height: 40%;
+	}
+
+	#aboutDisplayField h3,
+	#levelsField h3 {
+		margin: 5% 0 0 0;
+		font-size: 100%;
+	}
+
+	#aboutDisplayField p {
+		line-height: 150%;
+		font-size: 100%;
+	}
+
+	#settingsField {
+		grid-template-columns: 20% 1fr;
+	}
+
+	#settingsField .settings-text-field {
+		display: none;
+	}
 }
