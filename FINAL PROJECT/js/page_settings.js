@@ -75,6 +75,7 @@ document.body.addEventListener('mousemove', checkMusicAndSoundsStatus, false);
 
 function checkMusicAndSoundsStatus() {
 	let musicAndSoundsStatusH = null;
+	console.log('loading data from local storage');
 	// проверим локальные настройки музыки и звука 
 	let data = JSON.parse(window.localStorage.getItem('musicAndSounds'));
 	if (data) {
@@ -84,6 +85,7 @@ function checkMusicAndSoundsStatus() {
 			music: true,
 			sound: true
 		};
+		localStorage['musicAndSounds'] = JSON.stringify(musicAndSoundsStatusH);
 	}
 
 	// ! не работает, ошибка - play() failed because the user didn't interact with the document first
